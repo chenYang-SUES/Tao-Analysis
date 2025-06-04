@@ -172,5 +172,51 @@ We now give some basic properties of unions, intersections, and difference sets.
 
 **_Proof_** See Exercise 3.1.6.<span style="float: right">□</span>
 
+**_Remark 3.1.29_** The reader may observe a certain symmetry in the above laws between $\cup$ and $\cap$, and between $X$ and $\emptyset$. This is an example of _duality_ -- two distinct properties or objects being dual to each other. In this case, the duality is manifested by the complementation $A \mapsto X \setminus A$; the de Morgan laws assert that this relation converts unions into intersections and vice versa. (It also interchanges $X$  and the empty set.) The above laws are collectively known as the _laws of Boolean algebra_, after the mathematician George Boole (1815-1864), and are also applicable to a number of other objects other than sets; they play a particularly important role in mathematical logic.
 
+We have now accumulated a number of axioms and results about sets, but there are still many things we are not able to do yet. One of the basic things we wish to do with a set is take each of the objects of that set, and somehow transform each such object into a new object; for instance we may wish to start with a set of numbers, say $\{3, 5, 9\}$, and increment each one, creating a new set $\{4,6,10\}$. This is not something we can do directly using only the axioms we already have, so we need a new axiom:
 
+> **Axiom 3.7** (_Replacement_). Let $A$ be a set. For any object $x \in A$, and any object $y$, suppose we have a statement $P(x, y)$ pertaining to $x$ and $y$, such that for each $x \in A$ there is at most one $y$ for which $P(x,y)$ is true. Then there exists a set $\{y: P(x,y) \text{ is true for some } x \in A\}$, such that for any object $z$,
+> $$
+z \in \{y: P(x,y) \text{ is true for some } x \in A\} \Leftrightarrow P(x, z) \text{ is true for some } x \in A.
+$$
+
+**_Example 3.1.30_** Let $A:=\{3,5,9\}$ and let $P(x,y)$ be the statement $y = x++$, i.e., $y$ is the successor of $x$. Observe that for every $x \in A$, there is exactly one $y$ for which $P(x,y)$ is true -- specifically, the successor of $x$. Thus the above axiom asserts that the set $\{y:y=x++ \text{ for some } x \in \{3,5,9\}\}$ exists; in this case, it is clearly the same set as $\{4, 6, 10\}$ (why?)
+
+!!! note Why in this case the set is $\{4, 6, 10\}$?
+    Let $B :=\{4, 6, 10\}$ and $C:=\{y: y = x++ \text{ for some } x \in \{3,5,9\}\}$. To prove that in this case the set is \{4,6,10\}, we need to show that every element $z$ of $B$ is an element of $C$, and vice versa. Obviously, for $4 \in B$ and $3 \in A$, we have $4 = 3++$, i.e., $P(3, 4)$ is true, and hence $4 \in C\} $. Similarly, we can show that $6 \in C$ and $10 \in C$. Therefore $C$ at least contains $4$, $6$ and $10$ as its elements. Suppose that contains any element other than these three elements, say $a$, then at least one of $P(3,a)$, $P(5, a)$ or $P(9,a)$ is true. By Axiom 3.7 again, at least one of $a = 4$ or $a = 6$ or $a = 10$ is true, which leads to a contradiction. Therefore, C only contains $4$, $6$ and $10$, all of which belong to B. Therefore, the set is $\{4, 6, 10\}$.
+
+**_Example 3.1.31_** Let $A = \{3,5,9\}$, and let $P(x,y)$ be the statement $y = 1$. Then again for every $x \in A$, there is exactly one $y$ for which $P(x,y)$ is true -- specifically, the number $1$. In this case $\{y: y=1 \text{ for some } x \in \{3,5,9\} \}$ is just the singleton set $\{1\}$; we have replaced each element $3$, $5$, $9$ of the original set $A$ by the same object, namely $1$. Thus this rather silly example shows that the set obtained by the above axiom can be "smaller" than the original set.
+
+we often abbreviate a set of the form
+$$
+\{y: y = f(x) \text{ for some } x \in A\}
+$$
+as $\{f(x): x \in A\}$ or $\{f(x)| x \in A\}$. Thus for instance, if $A = \{3,5,9\}$, then $\{x++: x\in A\}$ is the set $\{4, 6, 10\}$. We can of course combine the axiom of replacement with the axiom of specification, thus for instance we can create sets such as $\{f(x): x \in A; P(x) \text{ is true}\}$ by starting with the set $A$, using the axiom of specification to create $\{x \in A: P(x) \text{ is true}\}$, and then applying the axiom of replacement to create $\{f(x): x \in A; P(x) \text{ is true}\}$. Thus for instance $\{n++: n \in \{3, 5, 9\}; n < 6\} = \{4, 6\}$.<span style="float: right">□</span>
+
+In many of our examples we have implicitly assumed that natural numbers are in fact objects. Let us formalize this as follows.
+
+> **Axiom 3.8** (_Infinity_). Thre exists a set $\mathbf{N}$, whose elements are called natural numbers, as well as an object $0$ in $\mathbf{N}$, and an object $n++$ assigned to every natural number $n \in \mathbf{N}$, such that Peano axioms (Axioms 2.1-2.5) hold.
+
+This is the more formal version of Assumption 2.6. It is called the axiom of infinity because it introduces the most basic example of an infinite set, namely the set of natural numbers $\mathbf{N}$. (We will formalize what finite and infinite mean in Sect. 3.6.) From the axiom of infinity we see what numbers such as $3$, $5$, and $7$ are indeed objects in set theory, and so (from the pair set axiom and pairwise union axiom) we can indeed legitimately construct sets such as $\{3, 5, 9\}$ as we have been doing in our examples.
+
+One has to keep the concept of a set distinct from the elements of that set; for instance, the set $\{n+3, n \in \mathbf{N}, 0 \le n \le 5\}$ is not the same thing as the expression or function $n+3$. We emphasize this with an example:
+
+**_Example 3.1.32_** (Informal) This example requires the notion of subtraction, which has not yet been formally introduced. The following two sets are equal,
+$$
+\{n+3: n \in \mathbf{N}, 0\le n \le 5\} = \{8-n:n\in \mathbf{N}, 0 \le n \le 5\}, \tag{3.1}
+$$
+(see below), even though the expressions $n+3$ and $8-n$ are never equal to each other for any natural number $n$. Thus, it is a good idea to remember to use those curly braces $\{\}$ when you talk about sets, lest you accidentally confuse a set with its elements. One reason for this counterintuitive situation is that the letter $n$ is being used in two different ways on the two sides of (3.1). To clarify the situation, let us rewrite the set $\{8-n: n \in \mathbf{N}, 0 \le n \le 5\}$ by replacing the letter $n$ by the letter $m$, thus giving $\{8-m: m \in \mathbf{N}, 0 \le m \le 5\}$. This is exactly the same set as before (why?), so we can rewrite (3.1)
+$$
+\{n+3: n \in \mathbf{N}, 0\le n \le 5\} = \{8-m:m\in \mathbf{N}, 0 \le m \le 5\}. 
+$$
+Now it is easy to se (using Axiom 3.2) why this identity is true, every number of the form $n+3$, where $n$ is a natural number between $0$ and $5$, is also of the form $8-m$ where $m:=5-n$ (note that $m$ is therefore also a natural number between $0$ and $5$); conversely, every number of the form $8-m$, where $m$ is a natural number between $0$ and $5$, is also of the form $n+3$, where $n:=5-m$ (note that $n$ is therefore a natural number between $0$ and $5$). Observe how much more confusing the above explanation of (3.1) would have been if we had not changed one of the $n$'s to an $m$ first!
+
+!!! note Why $\{8-n: n \in \mathbf{N}, 0 \le n \le 5\} = \{8-m: m \in \mathbf{N}, 0 \le m \le 5\}$?
+    Let $A := \{8-n: n \in \mathbf{N}, 0 \le n \le 5\}$ and $B := \{8-m: m \in \mathbf{N}, 0 \le m \le 5\}$.  For any $x \in A$, there exists $n \in \mathbf{N}$ with $0 \le n \le 5$ such that $x = 8-n$. Let $m = n$, then $m \in \mathbf{N}$ and $0 \le m \le 5$, and $x = 8-m$. Therefore $x \in B$.  Similarly, for any $y \in B$, there exists $m \in \mathbf{N}$ with $0 \le m \le 5$ such that $y = 8-m$. Let $n = m$, then $n \in \mathbf{N}$ and $0 \le n \le 5$, and $y = 8-n$. Therefore $y \in A$.  By Axiom 3.2, $A = B$. <span style="float: right">□</span>
+
+Formally, we can refer to $\mathbf{N}$ as "the set of naturall numbers", but we shall often abbreviate this to simply "the natural numbers". Similarly for some otehr sets that we will introduce later in this text; for instance $Z$ will be "the set of integers" but also the "integers", $\mathbf{R}$ will be the "set of real numbers" but also "the real numbers" or even just "the reals", and so forth.
+
+## Exercises
+
+_Exercise 3.1.1_ Let $a$, $b$, $c$, $d$ be objects such that $\{a, b\} = \{c, d\}$. Show that at least one of the two statements "$a=c$ and $b=d$" and "$a=d$ and $b=c$" hold.
