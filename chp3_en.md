@@ -89,9 +89,88 @@ This axiom allows us to define triplet sets, quadruplet set, and so forth: if $a
 Clearly, some sets seem to be larger than others. One way to formalize this concept is through the notion of a _subset_.
 
 > **Definition 3.1.14** (_Subsets_). Let $A$, $B$ be sets. We say that $A$ is a _subset_ of $B$, denoted $A \subseteq B$, iff every element of $A$ is also an element of $B$, i.e.,
-> $$
-\text{For any object } x, x \in A \Rightarrow x \in B.
+> $$ \text{For any object } x, x \in A \Rightarrow x \in B. $$
+> We say that $A$ is a proper _subset_ of $B$, denoted $A \subsetneq B$, if $A \subseteq B$ and $A \neq B$.
+
+**_Remark 3.1.15_** Because these definitions involve only the notions of equality and the "is an element of" relation, both of which already obey the axiom of substitution, the notion of subset also automatically obeys the axiom of substitution. Thus for instance if $A \subseteq B$ and $A = A'$, then $A' \subseteq B$\dots
+
+**_Examples 3.1.16_** We have $\{1, 2, 4\} \subseteq \{1,2,3,4,5\}$, because every element of $\{1,2,4\}$ is also an element of $\{1,2,3,4,5\}$. In fact we also have $\{1,2,4\} \subsetneq \{1,2,3,4,5\}$, since the two sets $\{1,2,4\}$ and $\{1,2,3,4,5\}$ are not equal. Given any set $A$, we always have $A \subseteq A$ (why?) and $\emptyset \subseteq A$ (why?).
+
+!!! note Why $A \subseteq A$ and $\emptyset \subseteq A$?
+    (1) By the reflexive axiom of equalitiy, we have $A = A$. By Axiom 3.2, for any object $x$, $x \in A \Leftrightarrow x \in A$. Thus by the definition of subsets, we have $A \subseteq A$.
+
+    (2) We need to show that for any object $x$, $x \in \emptyset \Rightarrow x \in A$. This statement is vacuously true since the hypothesis is false by Axiom 3.3.
+
+The notion of subset in set theory is similar to the notion of "less than or equal to" for numbers, as the following proposition demonstrates (for a more precise statement, see Definition 8.5.1):
+
+**Proposition 3.1.17** (Sets are partially ordered by set inclusion). _Let $A$, $B$, $C$ be sets. If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$. If $A \subseteq B$ and $B \subseteq A$, then $A = B$. Finally, if $A \subsetneq B$ and $B \subsetneq C$ then $A \subsetneq C$_.
+
+**_Proof_** We shall just prove the first claim. Supppose that $A \subseteq B$ and $B \subseteq C$. To prove that $A \subseteq C$, we have to provce that every element of $A$ is an element of $C$. So, let us pick an arbitary element $x$ of $A$. Then, since $A \subseteq B$, $x$ must then be an element of $B$. But then since $B \subseteq C$, $x$ is an element of $C$. Thus every element of $A$ is indeed an element of $C$, as claimed.<span style="float: right">□</span>
+
+**_Remark 3.1.18_** The subset relation and the union operation are related to each other: seed for instance Exercice 3.1.7.
+
+**_Remark 3.1.19_** There is one important difference between the subset relation $\subsetneq$ and the less than relation $<$. Given any two distinct natural numbers $n$, $m$, we know that one of them is smaller than the other (Proposition 2.2.13); however, given two distinct sets, it is not in general true that one of them is a subset of the other. For instance, take $A:=\{2n: n \in \mathbf{N}\}$ to the set of even natural numbers, and $B:= \{2n+1: n \in \mathbf{N}\}$ to be the set of odd natural numbers. Then neither set is a subset of the other. This is why we say that sets are only partially ordered, whereas the natural numbers are totally ordered (see Definitions 8.5.1, 8.5.3).
+
+**_Remark 3.1.20_** We should also caution that the subset relation $\subseteq$ is _not_ the same as the element relation $\in$. The number $2$ is an element of $\{1,2,3\}$ but not a subset; thus $2 \in \{1,2,3\}$, but $2 \not\subseteq \{1,2,3\}$. Indeed, $2$ is not even a set. Conversely, while $\{2\}$ dis a subset of $\{1,2,3\}$, it is not an element; thus $\{2\} \subseteq \{1,2,3\}$ but $\{2\} \notin \{1,2,3\}$. The point is that the number $2$ and the set $\{2\}$ are distinct objects. It is important to distinguish sets from their elements, as they can have different properties. For instance, it is possible to have an infinitie set consisting of finite numbers (the set $\mathbf{N}$ of natural numbers is one such example), and it is also possible to have a finite set consisting of infinite objects (consider for instance the finite set $\{\mathbf{N}, \mathbf{Z}, \mathbf{Q}, \mathbf{R}\}$, which has four elements, all of which are infinite).
+
+We now give an axiom which easily allows us to create subsets out of larger sets.
+
+> **Axiom 3.6** (_Axiom of specification_). Let $A$ be a set, and for each $x \in A$, let $P(x)$ be a property pertaining to $x$ (i.e., for each $x \in A$, $P(x)$ is either a true statement or a false statement). Then there exists a set, called $\{x \in A: P(x) \text{ is true}\}$ (or simply $\{x \in A: P(x)\}$ for short), whose elements are precisely the elements $x$ in $A$ for which $P(x)$ is true. In other words, for any object $y$,
+$$
+y \in \{x \in A: P(x) \text{ is true}\} \Leftrightarrow (y \in A \text{ and } P(y) \text{ is true}).
 $$
 
-We say that $A$ is a proper _subset_ of $B$, denoted $A \subsetneq B$, if $A \subseteq B$ and $A \neq B$.
+This axiom is also known as the _axiom of seperation_. Note that $\{x \in A: P(x) \text{ is true} \}$ is always a subset of $A$ (why?), though it could be as large as $A$ or as small as the empty set. One can verify that the axiom of substitution works for specification, thus if $A = A'$ then $\{x \in A: P(x)\} = \{x \in A': P(x)\}$ (why?).
+
+!!! note Why $\{x \in A: P(x) \text{ is true} \}$ is always a subset of $A$
+    We have to prove that every element of $\{x \in A: P(x) \text{ is true} \}$ is an element of $A$. So let us pick an arbitary element $x$ of $\{x \in A: P(x) \text{ is true} \}$. By Axiom 3.6, we have $x \in A$. Thus $\{x \in A: P(x) \text{ is true} \}$ is always a subset of $A$.
+
+!!! note why if $A = A'$ then $\{x \in A: P(x)\} = \{x \in A': P(x)\}$ ?
+    We have to prove that every element of $\{x \in A: P(x)\}$ is an element of $\{x \in A': P(x)\}$, and vice versa. So let us pick an arbitary element $x$ of $\{x \in A: P(x)\}$. By Axiom 3.6, we have ($x \in A$ and $P(x)$ is true). Since $A = A'$, we have ($x \in A'$ and $P(x)$ is true) by the substitution axiom. By Axiom 3.6 again, we have $x \in \{x \in A': P(x)\}$. Thus every element of $\{x \in A: P(x)\}$ is an element of $\{x \in A': P(x)\}$. Similarly, we can prove that every element of $\{x \in A': P(x)\}$ is an element of $\{x \in A: P(x)\}$.
+
+**_Example 3.1.21_** Let $S:=\{1,2,3,4,5\}$. Then the set $\{n \in S: n<4\}$ is the set of those elements $n$ in $S$ for which $n < 4$ is true, i.e., $\{n\in S: n < 4\} = \{1,2,3\}$. Similarly, the set $\{n \in S: n < 7\}$ is the same as $S$ itself, while $\{n \in S: n<1\}$ is the empty set.
+
+We sometimes write $\{x \in A | P(x)\}$ instead of $\{x \in A: P(x)\}$; this is useful when we are using the colon ":" to denote something else, for instance to denote the domain and codomain of a function $f: X \rightarrow Y$. We can also describe $\{x \in A: P(x)\}$ in words as "the set of all $x$ in $A$ such that $P(x)$ is true".
+
+We can use this axiom of specification to define some further operations on sets, namely intersections and difference sets.
+
+> **Definition 3.1.22** (_Intersections_). The _intersection_ $S_1 \cap S_2$ of two sets is defined to be the set
+> $$ S_1 \cap S_2 := \{x \in S_1: x \in S_2\}.  $$
+> In other words, $S_1 \cap S_2$ consists of all the elements which belong to both $S_1$ and $S_2$. Thus, for all objects $x$,
+> $$ x \in S_1 \cap S_2 \Leftrightarrow x \in S_1 \text{ and } x \in S_2.$$
+
+**_Remark 3.1.23_** Note that this definition is well-defined (i.e., it obeys the axiom of substitution, see Sect. A.7) because it is defined in terms of more primitive operations which were already known to obey the axiom fo substitution. Similar remarks apply to future definitions in this chapter and will usually not be mentioned explicitly again.
+
+**_Examples 3.1.24_** We have $\{1,2,4\} \cap \{2, 3, 4\} = \{2, 4\}$, $\{1, 2\} \cap \{3, 4\} = \emptyset$, $\{2,3\} \cup \emptyset = \{2, 3\}$, and $\{2, 3\} \cap \emptyset = \emptyset$.
+
+**_Remark 3.1.25_** By the way, one should be careful with the English word "and": rather confusingly, it can mean either union or intersection, depending on context. For instance, if one talks about a set of "boys and girls", one means _union_ of a set of boys with a set of girls, but if one talks about the set of people who are single and male, then one means the _intersection_ of the set of single people wiht the set of male people. (Can you work out the rule of grammar that determines when "and" means union and when "and" means intersection?) Another problem is that "and" is also used in English to denote addition, thus for instance one could say that "$2$ and $3$ is $5$", while also saying that "the elements of $\{2\}$ and the elements of $\{3\}$ form the set $\{2, 3\}$" and "the elements in $\{2\}$ and $\{3\}$ form the set $\emptyset$". This can certainly get confusing! One reason we resort to mathematical symbols instead of English words such as "and" is that mathematical symbols always have a precise and unambiguous meaning, whereas one must often look very carefully at the contex in order to work out what an English word means.
+
+Two sets $A$, $B$ are said to be _disjoint_ if $A \cap B = \emptyset$. Note that this is not the same concept as being _distinct_, $A \neq B$. For instance, the sets $\{1,2,3\}$ and $\{2,3,4\}$ are distinct (there are elements of one set which are not elements of the other) but not disjoint (because their intersection is non-empty). Meanwhile, the sets $\emptyset$ and $\emptyset$ are disjoint but not distinct (why?)
+
+!!! note Why $\emptyset$ and $\emptyset$ are disjoint but not distinct?
+    By the definition, for all objects $x$, $x \in \emptyset \cap \emptyset \Leftrightarrow x \in \emptyset \text{ and } x \in \emptyset$. By Axiom 3.3 $x \in \emptyset$ is false, thus $x \in \emptyset \text{ and } x \in \emptyset$ is false. Therefore, $x \in \emptyset \cap \emptyset$ is false, i.e., $x \notin \emptyset \cap \emptyset$. By the Axiom 3.3 again, $\emptyset \cap \emptyset = \empty$, i.e., $\emptyset$ and $\emptyset$ are disjoint. On the other hand, $\emptyset = \emptyset$, so $\emptyset$ and $\emptyset$ are not distinct.
+
+There is an operation on sets that is somewhat analogous to substraction:
+
+> **Definition 3.1.26** (_Difference sets_). Given two sets $A$ and $B$, we define the set $A - B$ or $A \setminus B$ to be the set $A$ with any elements of $B$ removed:
+> $$ A \setminus B := \{x \in A: x \notin B\}; $$
+> for instance, $\{1,2,3,4\} \setminus \{2,4,6\} = \{1,3\}$. In many cases $B$ will be a subset of $A$, but not necessarily.
+
+We now give some basic properties of unions, intersections, and difference sets.
+
+**Proposition 3.1.27** (Sets form a boolean algebra). _Let $A$, $B$, $C$ be sets, and let $X$ be a set containing $A$, $B$, $C$ as subsets._
+- (a) _(Minimal element) We have $A \cup \emptyset = A$ and $A \cap \emptyset = \emptyset$._
+- (b) _(Maximal element) We have $A \cup X = A$ and $A \cap X = A$._
+- (c) _(Identity) We have $A \cap A = A$ and $A \cup A = A$._
+- (d) _(Commutativity) We have $A \cup B = B \cup A$ and $A \cap B = B \cap A$._
+- (e) _(Associativity) We have $(A \cup B) \cup C = A \cup (B \cup C)$ and $(A \cap B) \cap C = A \cap (B \cap C)$._
+- (f) _(Distributivity) We have $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$._
+- (g) _(Partition) We have $A \cup (X \setminus A) = X$ and $A \cap (X \setminus A) = \emptyset$._
+- (h) _(De Morgan laws) We have $X \setminus (A \cup B) = (X \setminus A) \cap (X \setminus B)$ and $X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B)$._ 
+
+**_Remark 3.1.28_** The de Morgan laws are named after the logician Augustus De Morgan (1806-1871), who identified them as one of the basic laws of set theory.
+
+**_Proof_** See Exercise 3.1.6.<span style="float: right">□</span>
+
+
 
