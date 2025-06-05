@@ -1,0 +1,39 @@
+{
+    "[markdown]": {
+        "editor.autoClosingBrackets": "always",
+        "editor.autoClosingQuotes": "always",
+        "editor.autoSurround": "brackets",
+        "editor.bracketPairColorization.enabled": true,
+        "editor.guides.bracketPairs": true
+    },
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-interaction=nonstopmode",
+                "-synctex=1",
+                "%DOC%"
+            ]
+        }
+    ],
+    "cSpell.enabled": true,
+    "cSpell.language": "en,en-GB",
+    "cSpell.allowCompoundWords": true,
+    "cSpell.ignorePaths": [
+        "node_modules",
+        "package-lock.json",
+        "yarn.lock",
+        ".git"
+    ],
+    "cSpell.words": [
+        "LaTeX",
+        "Markdown",
+        "XeLaTeX",
+        "latexmk"
+    ]
+} 

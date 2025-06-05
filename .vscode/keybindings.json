@@ -1,0 +1,7 @@
+[
+    {
+        "key": "cmd+i",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "inlineSuggestionVisible && !editorTabMovesFocus"
+    }
+] 
