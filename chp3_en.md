@@ -335,8 +335,68 @@ If the codomain of $f$ does not match the domain of $g$, we leave the compositio
 
 It is easy to check that composition obeys the axiom of substitution (Exercise 3.3.1).
 
+**_Example 3.3.14_** Let $f: \mathbf{N} \to \mathbf{N}$ be the function $f(n):=2n$, and let $g: \mathbf{N} \to \mathbf{N}$ be the function $g(n) = n + 3$. Then $g \circ f$ the function
+$$
+g \circ f(n) = g(f(n)) = g(2n) = 2n + 3,
+$$
+thus for instance $g \circ f(1) = 5$, $g \circ f(2) = 7$, and so forth. Meanwhile, $f \circ g$ is the function
+$$
+f \circ g(n) = f(g(n))=f(n+3) = 2(n+3) = 2n +6,
+$$
+thus for instance $f \circ g(1) = 8$, $f \circ g(2) = 10$, and so forth.
 
+The above example shows that composition is not commutative: $f \circ g$ and $g \circ f$ are not necessarily the same function. However, composition is still associative:
 
+> **Lemma 3.3.15** (Composition is associative). *Let $f: Z \to W$, $g: Y \to Z$*, and $h: X \to Y$ be functions. Then $f \circ (g \circ h) = (f \circ g) \circ h$.
+
+**_Proof_** Since $g \circ h$ is a function from $X$ to $Z$, $f \circ (g \circ h)$ is a function from $X$ to $W$. Similarly $f \circ g$ is a function from $Y$ to $W$, and hence $(f \circ g) \circ h$ is a function from $X$ to $W$. Thus $f \circ (g \circ h)$ and $(f \circ g) \circ h$ have the same domain and codomain. In order to check that they are equal, we see from Definition 3.3.8 that we have to verify that $(f \circ (g\circ h))(x) = ((f\circ g) \circ h)(x)$ for all $x \in X$. But by Definition 3.3.13
+$$
+\begin{align*}
+(f \circ (g \circ h))(x) &= f((g\circ h)(x)) \\
+&= f(g(h(x))) \\
+&=(f \circ g)(h(x)) \\
+&=((f \circ g) \circ h)(x)
+\end{align*}
+$$
+as desired.
+
+**_Remark 3.3.16_** Note that while $g$ appears to the left of $f$ in the expression $g \circ f$, the function $g \circ f$ applies the right-most function $f$ first, before applying $g$. This is often confusing at first; it arises because we traditionally place a function $f$ to the left of its input $x$ rather than to the right. (There are some alternate mathematical notations in which the function is placed to the right of the input; thus we would write $xf$ instead of $f(x)$, but this notation has often proven to be more confusing than clarifying and has not as yet become partially popular.)
+
+We now describe certain special types of functions: *one-to-one* functions, *onto* functions, and *invertible* functions.
+
+> **Definition 3.3.17** (*One-to-one functions*). A function $f$ is *one-to-one* (or injective) if different elements map to different elements:
+$$
+x \neq x' \implies f(x) \neq f(x')
+$$
+Equivalently, a function is one-to-one if
+$$
+f(x) = f(x') \implies x = x'
+$$
+
+**_Example 3.3.18_** (Informal) The function $f: \mathbf{Z} \to \mathbf{Z}$ defined by $f(n):=n^2$ is not one-to-one because the distinct elements $-1$, $1$ map to the same element $1$. On the other hand, if we restrict this function to the natural numbers, defining the function $g: \mathbf{N} \to \mathbf{Z}$ by $g(n):=n^2$, then $g$ is now a one-to-one function. Thus the notion of a one-to-one function depends not just on what the function does, but also what its domain is.
+
+**_Remark 3.3.19_** If a function $f: X \to Y$ is not one-to-one, then one can find distinct $x$ and $x'$ in the domain $X$ such that $f(x) = f(x')$, thus one can find two inputs which map to one output. Because of this, we say that $f$ is *two-to-one* instead of *one-to-one*.
+
+> **_Definition 3.3.20_** (*Onto functions*). A function $f$ is *onto* (or *surjective*) if every element in Y comes from applying $f$ to some element $X$:
+> $$
+\text{For every } y \in Y, \text{ there exists } x \in X \text{ such that } f(x) =y.
+$$
+
+**_Example 3.3.21_** (Informal) The function $f: \mathbf{Z} \to \mathbf{Z}$ defined by $f(n):=n^2$ is not onto because the negative numbers are not in the image of $f$. However, if we restrict the codomain $Z$ to the set $A:=\{n^2: n\in \mathbf{Z}\}$ of square numbers, then the function $g: \mathbf{Z} \to A$ defined by $g(n):=n^2$ is now onto. Thus the notion of an onto function depends not just on what the function does, but also what its range is.
+
+**_Remark 3.3.22_** The concepts of injectivity and surjectivity are in many ways dual to each other; see Exercises 3.3.2, 3.3.4, 3.3.5 for some evidence of this.
+
+> **_Definition 3.3.23_** (*Bijective functions*). Functions $f: X \to Y$ which are both one-to-one and onto are also called *bijective* or *invertible*.
+
+**_Example 3.3.24_** Let $f: \{1, 2, 4\} \to \{3, 4\}$ be the function $f(0):=3$, $f(1):=3$, $f(2):=4$. This function is not bijective because if we set $y=3$, then there is more than one $x$ in $\{1, 2, 4\}$ such that $f(x) = y$ (this is a failure of injectivity). Now let $g: \{0,1\} \to \{2, 3, 4\}$ be the function $g(0):=2, g(1):=3$; then $g$ is not bijective because if we set $y=4$, then there is no $x$ for which $g(x)=y$ (this is a failure of surjectivity). Now let $h: \{0, 1, 2\} \to \{3, 4, 5\}$ be the function $h(0):=3$, $h(1):=r$, $h(2):=5$. Then $h$ is bijective, because each of the elements $3, 4, 5$ comes from exactly one element from $0,1,2$.
+
+**_Example 3.3.25_** The function $f: \mathbf{N} \to \mathbf{N} \setminus \{0\}$ defined by $f(n):= n++$ is a bijection (in fact, this fact is simply restating Lemma 2.2.10). On the other hand, the function $g: \mathbf{N} \to \mathbf{N}$ defined by the same defintion $g(n):=n++$ is not a bijection. thus the notion of a bijective function depends not just on what the function does, but also what its domain and codomain are.
+
+**_Remark 3.3.26_** If a function $x \mapsto f(x)$ is bijective, then we sometimes call $f$ a *perfect matching* or *one-to-one correspondence* (not to be confused with the notion of a one-to-one function) and denote the action of $f$ using the notion $x \leftrightarrow f(x)$ instead of $x \mapsto f(x)$. Thus for instance the function $h$ in the above example is the one-to-one correspondence $0 \leftrightarrow 3$, $1 \Leftrightarrow 4$, $2 \leftrightarrow 5$.
+
+**_Remark 3.3.27_** A common error is to say that a function $f: X \to Y$ is bijective iff "for every $x$ in $X$, there is exactly one $y$ in $Y$ such that $y = f(x)$". This is not what it means for $f$ to be bijective; rather, this is merely stating what it means for $f$ to be a *function*. A function cannot map one element to two different elements, for instance one cannot have a function $f$ for which $f(0) = 1$ and also $f(0) = 2$. The functions $f$, $g$ given in Example $3.3.25$ are not bijective, but they are still functions, since each input will gives exactly one output.
+
+If $f$ is bijective, then for every $y \in Y$, there is exactly one $x$ such that $f(x) = y$ (there is at least one because of surjectivity, and at most one because of injectivity). This value of $x$ is denoted by $f^{-1}(y)$; thus $f^{-1}$ is a function from $Y$ to $X$. We call $f^{-1}$ the *inverse* of f.
 
 [^2]: In some texts the codmain is referred to as the *range*; however we will use the term range to refer instead to the image $f(X)$ of the domain, defined after Definition 3.4.1. 
 [^3]: In Chap. 8 of *Analysis II*, we shall introduce da weaker notion of equality, that of two functions being *equal almost everywhere*.
