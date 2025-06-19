@@ -10,6 +10,9 @@ this set is a subset of $Y$ and is sometimes called the *image* of $S$ under the
 
 Note that the set $f(S)$ is well-defined thanks to the axiom of replacement (Axiom 3.7). One can also define $f(S)$ using the axiom of specification (Axiom 3.6) instead of replacement, but we have leave this as an exercise to reader. The image $f(X)$ of the domain is also known as the *range* of the function $f: X \to Y$; it is a subset of the codmain $Y$.
 
+!!! Note If $f(S)$ is defined by axiom of replacement, what is the statement $P(x,y)$?
+    Let $P(x,y)$ be the statement that $y=f(x)$ and $x \in S$. Since the definition of functions follows the vertical line test, for every $x \in S$ there is exactly one $y \in Y$ such that $P(x,y)$ holds and $y=f(x)$ as per this definition. So there exists a set $\{y: y=f(x), x \in S\}$, i.e., $\{f(x):x\in S\}$.
+
 ***Example 3.4.2*** If $f: \mathbf{N} \to \mathbf{N}$ is the map $f(x)=2x$, then the forward image of $\{1, 2, 3\}$ is $\{2, 4, 6\}$:
 $$
 f(\{1, 2, 3\}) = \{2, 4, 6\}.
@@ -40,9 +43,12 @@ $$
 (why?).
 
 !!! note Why $y \in f(S) \Leftrightarrow y = f(x) \text{ for some } x \in S$?
-    Let $P(x,y)$ be the statement that $y=f(x)$ and $x \in X$. By Definition 3.3.1, $f(x)\in Y$ is the unique object for which $P(x,f(x))$ is true. By Axiom 3.7, there exists a set $\{y:y=f(x) \text{ is true for some }x \in X\}$ such that for any object $y$, $\{y:y=f(x) \text{ is true for some }x \in X\}$ iff $y=f(x)$ for some $x \in S$. By Definition 3.4.1, $f(s):=\{f(x): x\in S\} = \{y:y=f(x) \text{ is true for some }x \in X\}$. So $y \in f(S) \Leftrightarrow y = f(x) \text{ for some } x \in S$.<span style="float: right">□</span>
+    Let $P(x,y)$ be the statement that $y=f(x)$ and $x \in X$. By Definition 3.3.1, $f(x)\in Y$ is the unique object for which $P(x,f(x))$ is true. By Axiom 3.7, there exists a set $\{y:y=f(x) \text{ is true for some }x \in X\}$ such that for any object $y$, $\{y:y=f(x) \text{ is true for some }x \in X\}$ iff $y=f(x)$ for some $x \in S$. By Definition 3.4.1, $f(S):=\{f(x): x\in S\} = \{y:y=f(x) \text{ is true for some }x \in X\}$. So $y \in f(S) \Leftrightarrow y = f(x) \text{ for some } x \in S$.<span style="float: right">□</span>
 
 ***Example 3.4.4*** From Definition 3.3.20 we see that a function $f: X \to Y$ is onto if and only if $f(X) = Y$.
+
+!!! Note Why a function $f: X \to Y$ is onto if and only if $f(X) = Y$?
+    First we show that $f$ is onto $\implies$ $f(X)=Y$. We prove by contradiction. Suppose $f(X) \neq Y$. Since $f(X) \subseteq Y$, we have $Y \not \subseteq f(X)$ otherwise $f(X) = Y$ as per Proposition 3.1.17. This means that there exist some $y \in Y$ for which $y \neq f(x)$ for all $x \in X$, which is contradictory to the fact that $f$ is onto. So $f \text{ is onto } \implies f(X) = Y$. Next we show that $f(X)=Y \implies f \text{ is onto}$. Suppose $y$ is an arbitrary element of $Y$. Since $f(X) = Y$, we have $y \in f(X)$ by Axiom 3.2, which is equivalent to $y=f(x)$ for some $x \in X$. So for every element of $Y$ there exists $x \in X$ such that $f(x)=y$ and by hence $f$ is onto by the definition of onto functions.
 
 > **Definition 3.4.5** (Inverse images) If $U$ is a subset of $Y$, we define the set $f^{-1}(U)$ to be the set
 $$
@@ -78,7 +84,7 @@ $$
 
 ***Remark 3.4.8*** If $f$ is a bijective function, then we have defined $f^{-1}$ in two slightly differently ways, but this is not an issue because the two defintions agree in this case (Exercise 3.4.1).
 
-As remarked earlier, functions are not necessarily sets. However, we do consider functions to be a type of object, and in particular we should be able to consider sets as functions. In particular, we should be able to consider the set of *all* functions from a set $X$ to a set $Y$. To do this we need to introduce another axiom to set theory.
+As remarked earlier, functions are not necessarily sets. However, we do consider functions to be a type of object, and in particular we should be able to consider sets of functions. In particular, we should be able to consider the set of *all* functions from a set $X$ to a set $Y$. To do this we need to introduce another axiom to set theory.
 
 > **Axiom 3.11** (*Power set axiom*). Let $X$ and $Y$ be sets. Then there exists a set, denoted $Y^X$, which consists of all the functions from $X$ to $Y$, thus
 $$
@@ -106,7 +112,7 @@ $$
 2^{\{a, b, c\}} = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\}\}.
 $$
 
-Note that while \{a, b, c\} has 3 elements, $2^{a, b, c}$ has $2^3=8$ elements. This gives a hint as to why we refer to the power set of $X$ as $2^X$; we return to this issue in Chap. 8.
+Note that while \{a, b, c\} has 3 elements, $2^{\{a, b, c\}}$ has $2^3=8$ elements. This gives a hint as to why we refer to the power set of $X$ as $2^X$; we return to this issue in Chap. 8.
 
 For sake of completeness, let us now add one further axiom to our set theory, in which we enhance the axiom of pairwise union to allow unions of much larger collections of set.
 
@@ -154,11 +160,88 @@ $$
     By Definition 3.4.1, the forward image of $V$ under $f^{-1}$ is defined as $f^{-1}(V):=\{f^{-1}(y): y\in V\}$. By Definition 3.4.5, the inverse image of $V$ under f is defined as $f^{-1}(V)=\{x \in X: f(x) \in V\}$. To show that $\{f^{-1}(y): y\in V\} = \{x \in X: f(x) \in V\}$, we need to show that every element of $\{f^{-1}(y): y\in V\}$ is an element of $\{x \in X: f(x) \in V\}$ and vice versa by Axiom 3.2. Let $x$ be an arbitrary object. By the axiom of replacement, $x \in \{f^{-1}(y): y\in V\}$ iff $x=f^{-1}(y)$ and $y \in V$. By the defintion of inverse function, $x=f^{-1}(y) \Leftrightarrow y = f(x)$. So $x \in \{f^{-1}(y): y\in V\}$ iff $y=f(x)$ and $y \in V$, i.e, iff $f(x) \in V$. However, by Definition 3.4.5, $f(x) \in V$ iff $x \in \{x \in X: f(x) \in V\}$. Thus $x \in \{f^{-1}(y): y\in V\}$ iff $x \in \{x \in X: f(x) \in V\}$ and hence $\{f^{-1}(y): y\in V\} = \{x \in X: f(x) \in V\}$.<span style="float: right">□</span>
 
 !!! Success Model solution
-    Since "f^{-1}(V)" may refer to two different things here, let's first introduce some notations to avoid any confusion:
+    Since "$f^{-1}(V)$" may refer to two different things here, let's first introduce some notations to avoid any confusion:
     - Let $F$ be the *forward image* of $V$ under $f^{-1}$, i.e., $F:=\{f^{-1}(y):y \in V\}$.
     - Let $I$ be the *inverse image* of $V$ under $f$, i.e., $I:=\{x \in X: f(x) \in V\}$.
     In this exercise we must show that $F = I$, so as to ensure that the two definitions of $f^{-1}$ are equivalent. So, we will prove that $F \subseteq I$ and $I \subseteq F$.
     1. Let be $x \in F$, there exists $y \in V$ such that $x = f^{-1}(y)$. By definition, this is equivalent to $f(x) = y$. But since $y \in V$, we can say that $f(x) \in V$. Thus, we have both $x \in X$ (because $F \subseteq X$) and $f(x) \in V$, which means that $x \in I$.
     2. Conversely, let be $x \in I$. By definition, this means that $x \in X$ and that $f(x) \in V$, i.e., there exists a certain element $y \in V$ such that $y = f(x)$ and $x = f^{-1}(y)$ for a certain $y \in V$ which means that $x \in F$
+
+*Exercise 3.4.2* Let $f: X \to Y$ be a function from one set $X$ to another set $Y$, let $S$ be a subset of $X$ and let $U$ be a subset of Y.
+- (i) What, in general, can one say about $f^{-1}(f(S))$ and $S$?
+- (ii) What about $f(f^{-1}(U))$ and $U$?
+- (iii) What about $f^{-1}(f(f^{-1}(U)))$ and $f^{-1}(U)$?
+
+!!! Fail False solution
+    1. In general, $f^{-1}(f(S)) \not \subseteq S$. For instance, Let $f: \mathbf{Z} \to \mathbf{Z}$ be the map $f(x)=x^2$. Let $S = \{-1, 0, 1, 2\}$ and hence $S \subseteq \mathbf{Z}$. Then we have $f(S)=f(\{-1,0,1,2\})=\{0,1,4\}$ and hence $f^{-1}(f(S))=f^{-1}(\{0,1,4\})=\{-2,-1,0,1,2\}$. It is clear that $f^{-1}(f(S)) \not \subseteq S$. Instead we can see that $S \subseteq f^{-1}(f(S))$. Moreover, $S \subseteq f^{-1}(f(S))$ is indeed a true statement. Suppose $x$ is an object. If $x \in S$, then $f(x) \in f(S)$ by the definition of forward image. Then we further have $x \in f^{-1}(f(S))$ as $f(x) \in f(S) \Longleftrightarrow x \in f^{-1}(f(S))$ by the definition of inverse image. In conclusion, we can say $S \subseteq f^{-1}(f(S))$ in general.
+    2. If $f(x) \in f(f^{-1}(U))$ then $x \in f^{-1}(U)$ by the definition of forward image. However, $x \in f^{-1}(U) \Longleftrightarrow f(x) \in U$ by the definition of inverse image. So $f(x) \in f(f^{-1}(U))$ implies $f(x) \in U$ and hence $f(f^{-1}(U)) \subseteq U$. On the other hand, suppose $f(x)$ is an arbitrary object. If $f(x) \in U$ then we have $x\in f^{-1}(U)$ by the definition of inverse image, which further means that $f(x) \in f(f^{-1}(U))$ by the definition of forward image, so $U \subseteq f(f^{-1}(U))$. Since $f(f^{-1}(U)) \subseteq U$ and $U \subseteq f(f^{-1}(U))$, we have $U = f(f^{-1}(U))$.
+    3. As we proved in 2, $f(f^{-1}(U)) = U$, so $f(f(f^{-1}(U)))=f(U)$.
+!!! Success Model solution
+    This exercise gives a first taste of Exercise 3.4.5 below.
+    1. First consider $f^{-1}(f(S))$ and $S$.
+        - Do we have $f^{-1}(f(S)) \subseteq S$? Generally, no. As a counterexample, let's consider $f(x)=x^2$ with $X=Y=\mathbf{R}$ and $S= \{0,2\}$. We have $f^{-1}(f(S))=f^{-1}(\{0,4\})=\{-2,0,2\}$. In this set, we have an element, $-2$, which is not an element of $S$.
+        - Do we have $S \subseteq f^{-1}(f(S))$? Yes. Let be $x \in S$. Then, by definition, $f(x) \in f(S)$. So, $x \in X$ and is such that $f(x) \in f(S)$: this is precisely the defintion of $x \in f^{-1}(f(S))$.
+        - Conclusion: generally speaking, $S$ and $f^{-1}(f(S))$ are not equal, but $S \subseteq f^{-1}(f(S))$.
+    2. Now consider $f(f^{-1}(U))$ and $U$.
+        - Do we have $U \subseteq f(f^{-1}(U))$? Generally, no. As a counterexample, let's consider $f(x)=\sqrt{x}$ with $X = \mathbf{R}^+, Y= \mathbf{R}$ and $U=[-1, 1]$. We have $f(f^{-1}(U))=[0，1]$，which clearly shows that $U \not \subseteq f(f^{-1}(U))$.
+        - Do we have $f(f^{-1}(U)) \subseteq U$? Yes. Let be $y \in f(f^{-1}(U))$. By definition, there exists $x \in f^{-1}(U)$ such that $y=f(x)$. But if $x \in f^{-1}(U)$, we have $f(x) \in U$. And since $y=f(x)$, this means that $y \in U$.
+        - Conclusion: generally speaking, $U \neq f(f^{-1}(U))$, but $f(f^{-1}(U)) \subseteq U$.
+    3. Finally, consider $f^{-1}(f(f^{-1}(U)))$ and $f^{-1}(U)$.
+        - Do we have $f^{-1}(f(f^{-1}(U))) \subseteq f^{-1}(U)$? Yes. Let be $x \in f^{-1}(f(f^{-1}(U)))$. By definition, we have $x \in X$ and $f(x) \in f(f^{-1}(U))$. But if $f(x) \in f(f^{-1}(U))$, then $f(x) \in U$ by what we proved in 2. And since $x \in X$, by definition we have $x \in f^{-1}(U)$.
+        - Do we have $f^{-1}(U) \subseteq f^{-1}(f(f^{-1}(U)))$? Yes. By definition, $f^{-1}(U)$ is a subset of $X$. By what we proved in 1, we have $f^{-1}(U) \subseteq f^{-1}(f(f^{-1}(U)))$.
+        - Conclusion: $f^{-1}(f(f^{-1}(U)))= f^{-1}(U)$.
+
+*Exercise 3.4.3* Let $A$, $B$ be two subsets of a set $X$, and let $f: X \to Y$ be a function. Show that $f(A \cap B) \subseteq f(A) \cap f(B)$, that $f(A) \setminus f(B) \subseteq f(A \setminus B)$, $f(A \cup B) = f(A) \cup f(B)$. For the first two statements, is it true that the $\subseteq$ relation can be improved to $=$?
+
+!!! Success
+    1. $f(A \cap B) \subseteq f(A) \cap f(B)$
+       - By definition, $A \cap B \subseteq A$, and since $A \subseteq X$ we have $A \cap B \subseteq X$ by Proposition 3.1.17. Let be $y \in f(A \cap B)$, then there exists $x \in A \cap B$ such that $y=f(x)$. Since $A \cap B \subseteq A$ and $y=f(x)$, we have $y \in f(A)$. Similarly, $A \cap B \subseteq B$ leads to $y \in f(B)$. So we have $y \in f(A)$ and $y \in f(B)$, and hence $y \in f(A) \cap f(B)$ by definition. As $y$ is arbitrary, we have $f(A \cap B) \subseteq f(A) \cap f(B)$ as desired.
+    2. $f(A) \setminus f(B) \subseteq f(A \setminus B)$
+        - Let be $y \in f(A)\setminus f(B)$. By the definition of difference sets, we have $y \in f(A)$ and $y \not \in f(B)$. This means there exists $x \in A$ such that $y=f(x)$ and we must also have $x \not \in B$. Otherwise, we would have $y \in f(B)$ by definition. So there exists $x \in A$ and $x \not \in B$, namely $x \in A \setminus B$, such that $y=f(x)$ and hence $y \in f(A \setminus B)$. Since $y$ is arbitrary, we have $f(A)\setminus f(B) \subseteq f(A\setminus B)$ as desired.
+    3. $f(A \cup B) = f(A) \cup f(B)$
+        - We first show that $f(A \cup B) \subseteq f(A) \cup f(B)$. Let be $y \in f(A \cup B)$. By definition, there exists $x \in A \cup B$ such that $y=f(x)$. By the axiom of pairwise union, $x \in A \cup B$ iff $x \in A$ or $x \in B$. So either $y=f(x), x \in A$ or $y=f(x), x\in B$ is true. This means $y \in f(A)$ or $y \in f(B)$ and hence $y \in f(A) \cup f(B)$. Since $y$ is arbitrary, we have $f(A \cup B) \subseteq f(A) \cup f(B)$.
+        - Next we show that $f(A) \cup f(B) \subseteq f(A \cup B)$. Let be $y \in f(A) \cup f(B)$. By the axiom of pairwise union, we have $y \in f(A)$ or $y \in f(B)$. This means there exists $x \in A$ or $x \in B$ such that $y=f(x)$, which also means $y \in f(A \cup B)$. Since $y$ is arbitrary, we have $f(A) \cup f(B) \subseteq f(A \cup B)$.
+    4. Is it true that the $\subseteq$ relation can be improved to $=$?
+        - For the first statement, $f(A \cap B) = f(A) \cap f(B)$ is false. As a counterexample, let be $f: \{0, 1\} \to \{1\}$ be the map $f(0)=f(1)=1$. Let $A=\{0\}$ and $B=\{1\}$.We have $A \subseteq \{0,1\}$ and $B \subseteq \{0,1\}$ and $f(A) \cap f(B)=\{1\} \cap \{1\}=\{1\}$. However, $f(A \cap B)=f(\emptyset)=\emptyset$. It is clear that $\{1\} \neq \emptyset$, so $f(A \cap B) \neq f(A) \cap f(B)$.
+        - For the second statement, $f(A) \setminus f(B) = f(A \setminus B)$ is also false. As a counterexample,  let be $f: \{0, 1, 2\} \to \{1, 2\}$ be the map $f(0)=f(1)=1, f(2)=2$.Let $A=\{0,1\}$ and $B=\{1,2\}$. We have $A \subseteq \{0,1,2\}$ and $B \subseteq \{0,1,2\}$. $f(A) \setminus f(B) = f(\{0,1\}) \setminus f(\{1,2\})=\{1\} \setminus \{1, 2\} = \emptyset$ while $f(A\setminus B) = f(\{0\})=\{1\}$. It is clear that $\emptyset \neq \{1\}$, so $f(A) \setminus f(B)\neq f(A \setminus B)$.
+
+!!! Success Model solution
+    1. If $y \in f(A \cap B)$, then there exists $x \in A \cap B$ such that $f(x)=y$. Since $x \in A \cap B$, we have both $x \in A$ and $x \in B$, which implies $y=f(x) \in f(A)$ and $y=f(x) \in B$ respectively. Thus, $y\in f(A) \cap f(B)$, and we have proved that $f(A \cap B) \subseteq f(A) \cap f(B)$.
+    However, the converse inclusion false in general. For instance, let's consider the two sets $A=\{1,2\}$, $B=\{2,3\}$ and the (non injective) function $f$ defined as the mapping $f(1)=1,f(2)=2,f(3)=1$. We have $f(A)=\{1,2\}, f(B)=\{1,2\}$, thus $f(A) \cap f(B)=\{1,2\}$. This is not a subset of $f(A \cap B)=f(\{2\})=\{2\}$.
+
+    2. If $y \in f(A) \setminus f(B)$, then there exists $x_0 \in A$ such that $y=f(x_0)$, but we have $f(b) \neq y$ for all $b \in B$. Suppose that $x_0 \in B$: in this case, $f(x_0)\neq y$, a contradiction. Thus, $y=f(x_0)$ with $x_0 \in A \setminus B$, which proves that $f(A) \setminus f(B) \subseteq f(A \setminus B)$.
+    However, the converse inclusion is false in general. For instance, let's consider the two sets $A=\{1,2,3\}, B=\{3\}$ and the function $f$ defined as the mapping $f(1)=1,f(2)=2,f(3)=1$. We have $f(A\setminus B)=\{1, 2\}$, but $f(A) \setminus f(B) = \{2\}$.
+    
+    3. if $y \in f(A \cup B)$, then there exists $x \in A \cup B$ such that $y = f(x)$. If $x \in A$, then $f(x) \in f(A)$, which implies $x \in f(A) \cup f(B)$. There is an identical result if $x \in B$. Thus, $f(A \cup B)\subseteq f(A) \cup f(B)$.
+    Conversely, if $y \in f(A) \cup f(B)$, then we have either $y \in f(A)$ or $y \in f(B)$ (or both). In the first case, there exists $x \in A$ such that $y=f(x)$. But since $x \in A$, we also have $x \in A \cup B$, so that $y \in f(A \cup B)$. the same result holds if $y \in B$. Thus, in both cases, $y \in f(A \cup B)$
+
+
+*Exercise 3.4.6*
+(i) Prove Lemma 3.4.10. (*Hint:* start with the set $\{0, 1\}^X $ and apply the replacement axiom, replacing each function $f$ with the object $f^{-1}(\{1\})$.) See also Exercise 3.5.11.
+
+!!! success
+    By the power set axiom, $f \in \{1, 2\}^X$ iff $f: X \to \{1, 2\}$. Since $\{1\} \subseteq \{1, 2\}$, $f^{-1}(\{1\})$ is inverse image of $\{1\}$ which is unique by the definition of inverse images. So for each $f \in \{1,2\}^X$ there is at most one $Y$ such that $Y=f^{-1}(\{1\})$. By the replacement axiom, we can construct a set $Z:=\{f^{-1}(\{1\}):f \in \{1, 2\}^X \}$ such that for any object $Y$, $Y\in Z \Longleftrightarrow Y=f^{-1}(\{1\})$ for some $f \in \{1, 2\}^X$.
+
+    First we show that $Y \in Z \implies Y \subseteq X$. Since $Y \in Z \Longleftrightarrow Y=f^{-1}(\{1\})$ and $f^{-1}(\{1\}) \subseteq X$ by definition, we have $Y \subseteq X$. Next we show that $Y \subseteq X \implies Y \in Z$. Let $f_A: X \to \{1,2\}$ defined by $f_A(x)=1$ for $x \in Y$ and $f_A(x)=0$ otherwise. Obviously, we have $f_A \in \{0,1\}^X$ and $Y = f_A^{-1}(\{1\})$. So we have $Y \in Z$. Thus $Y \in Z \Longleftrightarrow Y \subseteq X$ for all objects $Y$.
+
+!!! Success Model solution
+    First, let's recall the main propositions involved in this exercise:
+    - **Replacement axiom**. Let $A$ be a set. For any object $x \in A$, and any object $y$, suppose we have a statement $P(x,y)$ pertaining to $x$ and $y$, such that for each $x \in A$ there is at most one $y$ for which $P(x,y)$ is true. Then there exists a set $\{y: P(x, y) \text{ is true for some } x \in A\}$, such that for any object $z$,$$z \in \{y: P(x, y) \text{ is true for some } x \in A\} \Longleftrightarrow P(x, z) \text{ is true for some } x \in A$$
+    - **Power set axiom** Let $X$ and $Y$ be sets. Then there exists a set, denoted $Y^X$, which consists of all the functions from $X$ to $Y$, thus $$f \in Y^x \Longleftrightarrow (f \text{ is a function with domain} X \text{ and codomain } Y).$$
+    - **Lemma 3.4.10** Let $X$ be a set. Then the set $$\{Y: Y \text{ is a subset of } X\}$$ is a set. That is to say, there exists a set $Z$ such that $$Y \in Z \Longleftrightarrow Y \subseteq X$$.
+
+    The aim is to prove this lemma using the two axioms recalled here.
+
+    1. Let $X$ be a set, and $Y=\{0,1\}$. As per the power axiom, $\{0,1\}^X$ is set, and it contains all functions $f:X \to \{0,1\}$.
+    2. Let $A$ be a subset of $X$. One can define the function $f_A:X \to \{0,1\}$, such that for all $x \in X$, $f(x)=1$ if $x \in A$, and $f(x)=0$ otherwise. We can even say more:
+        - If $A$ is a subset of $X$, then there exists an element $f \in \{0,1\}^X$ such that $A=f^{-1}(\{1\})$: this is precisely $f_A$ as defined above.
+        - Conversely, if $f \in \{0,1\}^X$, then $A=f^{-1}(\{1\})$ is by definition a subset of $X$.
+    
+        Thus, the two statements "$A$ is a subset of $X$" and "there exists $f \in \{0,1\}^X$ such that $A=f^{-1}(\{1\})$" are equivalent.
+    3. Finally, let be $A \subseteq X$ and $f \in \{0,1\}^X$. Let's define $P(f, A)$ the statement "$A=f^{-1}(\{1\})$". For each $f$, there is at most one $A$ (in fact, *exactly* one $A$) such that $P(f, A)$ is true. Thus, as per the axiom of replacement, there exists a set: $$P=\{A:A=f^{-1}(\{1\}) \text{ for some } f \in \{0,1\}^X\}$$
+    And, thanks to the equivalence demonstrated in 2:
+    $$P = \{A: A \text{ is a subset of } X\}$$ is a well-defined set, which we wanted to prove.
+    
+(ii) Conversely, show that Axiom 3.11 can be deduced the preceding axioms of set theory if one accepts Lemma 3.4.10 as an axiom. (This may help explain why we refer to Axiom 3.11 as the "power set axiom")
 
 [^4]: In principle this notation could collide with the existing notation f(x) for the evaluation of $f$ at $x$, if $S$ turns out to both be a subset of $X$ and an element of $X$. However, we will ignore this potential collision as it rarely occurs in practice.
