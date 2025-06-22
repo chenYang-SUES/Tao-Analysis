@@ -175,7 +175,7 @@ $$
 !!! Fail False solution
     1. In general, $f^{-1}(f(S)) \not \subseteq S$. For instance, Let $f: \mathbf{Z} \to \mathbf{Z}$ be the map $f(x)=x^2$. Let $S = \{-1, 0, 1, 2\}$ and hence $S \subseteq \mathbf{Z}$. Then we have $f(S)=f(\{-1,0,1,2\})=\{0,1,4\}$ and hence $f^{-1}(f(S))=f^{-1}(\{0,1,4\})=\{-2,-1,0,1,2\}$. It is clear that $f^{-1}(f(S)) \not \subseteq S$. Instead we can see that $S \subseteq f^{-1}(f(S))$. Moreover, $S \subseteq f^{-1}(f(S))$ is indeed a true statement. Suppose $x$ is an object. If $x \in S$, then $f(x) \in f(S)$ by the definition of forward image. Then we further have $x \in f^{-1}(f(S))$ as $f(x) \in f(S) \Longleftrightarrow x \in f^{-1}(f(S))$ by the definition of inverse image. In conclusion, we can say $S \subseteq f^{-1}(f(S))$ in general.
     2. If $f(x) \in f(f^{-1}(U))$ then $x \in f^{-1}(U)$ by the definition of forward image. However, $x \in f^{-1}(U) \Longleftrightarrow f(x) \in U$ by the definition of inverse image. So $f(x) \in f(f^{-1}(U))$ implies $f(x) \in U$ and hence $f(f^{-1}(U)) \subseteq U$. On the other hand, suppose $f(x)$ is an arbitrary object. If $f(x) \in U$ then we have $x\in f^{-1}(U)$ by the definition of inverse image, which further means that $f(x) \in f(f^{-1}(U))$ by the definition of forward image, so $U \subseteq f(f^{-1}(U))$. Since $f(f^{-1}(U)) \subseteq U$ and $U \subseteq f(f^{-1}(U))$, we have $U = f(f^{-1}(U))$.
-    3. As we proved in 2, $f(f^{-1}(U)) = U$, so $f(f(f^{-1}(U)))=f(U)$.
+    3. As we proved in 2, $f(f^{-1}(U)) = U$, so $f^{-1}(f(f^{-1}(U)))=f(U)$.
 !!! Success Model solution
     This exercise gives a first taste of Exercise 3.4.5 below.
     1. First consider $f^{-1}(f(S))$ and $S$.
@@ -213,13 +213,49 @@ $$
     However, the converse inclusion is false in general. For instance, let's consider the two sets $A=\{1,2,3\}, B=\{3\}$ and the function $f$ defined as the mapping $f(1)=1,f(2)=2,f(3)=1$. We have $f(A\setminus B)=\{1, 2\}$, but $f(A) \setminus f(B) = \{2\}$.
     
     3. if $y \in f(A \cup B)$, then there exists $x \in A \cup B$ such that $y = f(x)$. If $x \in A$, then $f(x) \in f(A)$, which implies $x \in f(A) \cup f(B)$. There is an identical result if $x \in B$. Thus, $f(A \cup B)\subseteq f(A) \cup f(B)$.
-    Conversely, if $y \in f(A) \cup f(B)$, then we have either $y \in f(A)$ or $y \in f(B)$ (or both). In the first case, there exists $x \in A$ such that $y=f(x)$. But since $x \in A$, we also have $x \in A \cup B$, so that $y \in f(A \cup B)$. the same result holds if $y \in B$. Thus, in both cases, $y \in f(A \cup B)$
+    Conversely, if $y \in f(A) \cup f(B)$, then we have either $y \in f(A)$ or $y \in f(B)$ (or both). In the first case, there exists $x \in A$ such that $y=f(x)$. But since $x \in A$, we also have $x \in A \cup B$, so that $y \in f(A \cup B)$. the same result holds if $y \in B$. Thus, in both cases, $y \in f(A \cup B)$.
 
+*Exercise 3.4.4* Let $f: X \to Y$ be a function from one set $X$ to another set $Y$, and let $U$, $V$ be subsets of $Y$. Show that $f^{-1}(U \cup V)=f^{-1}(U)\cup f^{-1}(V)$, that $f^{-1}(U\cap V)=f^{-1}(U) \cap f^{-1}(V)$, and that $f^{-1}(U\setminus V)=f^{-1}(U)\setminus f^{-1}(V)$.
 
+!!! Success
+    1. $f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)$
+        - Let be $x \in f^{-1}(U \cup V)$. By definition, we have $x \in X$ and $f(x) \in U \cup V$, which further means $f(x) \in X$ and ($f(x)\in U$ or f(x) \in V). If $f(x) \in U$, by definition we have $x \in f^{-1}(U) $ and hence $x \in f^{-1}(U) \cup f^{-1}(V)$. Similarly, if $f(x) \in V$, then we have $x \in f^{-1}(V)$ and hence $x \in f^{-1}(U) \cup f^{-1}(V)$. In both cases, we have $x \in f^{-1}(U) \cup f^{-1}(V)$, so $f^{-1}(U \cup V) \subseteq f^{-1}(U) \cup f^{-1}(V)$.
+        - Let be $x \in f^{-1}(U) \cup f^{-1}(V)$. By definition, we have $x \in f^{-1}(U) $ or $x \in f^{-1}(V)$. If $x \in f^{-1}(U)$, then by definition we have $x \in X$ and $f(x) \in U$. But $f(x) \in U$ also means $f(x) \in U \cup V$. So by definition, we have $x \in f^{-1}(U \cup V)$. Similarly, if $x \in f^{-1}(V)$, then we have $x \in V$ and $f(x) \in V$, which further means $f(x) \in U \cup V$. And then we have $x \in f^{-1}(U \cup V)$. In both cases, we have $x \in f^{-1}(U \cup V)$, so $f^{-1}(U) \cup f^{-1}(V) \subseteq f^{-1}(U \cup V)$.
+        - Finally, since $f^{-1}(U \cup V) \subseteq f^{-1}(U) \cup f^{-1}(V)$ and $f^{-1}(U) \cup f^{-1}(V) \subseteq f^{-1}(U \cup V)$, we have $f^{-1}(U \cup V) = f^{-1}(U) \cup f^{-1}(V)$.
+    2. $f^{-1}(U \cap V)=f^{-1}(U) \cap f^{-1}(V)$
+        - Let be $x \in f^{-1}(U \cap V)$. By definition, $f(x) \in U \cap V$, so that we have both $f(x) \in U$ and $f(x) \in V$. By definition we have both $x \in f^{-1}(U)$ and $x \in f^{-1}(V)$, implying that $x \in f^{-1}(U) \cap f^{-1}(V)$. thus, we have demonstrated that $f^{-1}(U \cap V) \subseteq f^{-1}(U) \cap f^{-1}(V)$.
+        - For the converse inclusion, let be $x \in f^{-1}(U) \cup f^{-1}(V)$, then we have both $x \in f^{-1}(U)$ and $x \in f^{-1}(V)$. By definition, we have both $f(x) \in U$ and $f(x) \in V$, which means $f(x) \in U \cap V$. So we have $x \in f^{-1}(U \cap V)$ by definition. Thus, we have proved that $^{-1}(U \cap V)\subseteq f^{-1}(U) \cap f^{-1}(V)$.
+        - This proves the equality $f^{-1}(U \cap V)=f^{-1}(U) \cap f^{-1}(V)$.
+    3. $f^{-1}(U \setminus V)=f^{-1}(U) \setminus f^{-1}(V)$.
+        - Let be $x \in f^{-1}(U \setminus V)$. By definition, $f(x) \in U \setminus V$, so that we have both $f(x) \in U$ and $f(x) \notin V$ for all $x \in X$. On one hand, $f(x) \in U$ implies $x \in f^{-1}(U)$. On the other hand, $f(x) \notin V$ implies $x \notin f^{-1}(V)$. Since if $x\in f^{-1}(V)$, then there exists $x \in X$ such that $f(x) \in V$ which leads to a contradiction. So we have both $x \in f^{-1}(U)$ and $x \notin f^{-1}(V)$, meaning that $x \in f^{-1}(U) \setminus f^{-1}(V)$. Thus, we have demonstrated that $f^{-1}(U \setminus V)\subseteq f^{-1}(U) \setminus f^{-1}(V)$.
+        - For the converse inclusion, let be $x \in f^{-1}(U) \setminus f^{-1}(V)$. Then we have both $x \in f^{-1}(U)$ and $x \notin f^{-1}(V)$. By definition, $x \in f^{-1}(U)$ iff $f(x) \in U$, and $x \notin f^{-1}(V)$ implies $f(x) \notin V$ for all $x \in X$. So $f(x) \in U \setminus V$ and hence $x \in f^{-1}(U \setminus V)$ by definition. Thus, we have proved that $f^{-1}(U) \setminus f^{-1}(V) \subseteq f^{-1}(U \setminus V)$.
+        - This proves the equality $f^{-1}(U \setminus V)=f^{-1}(U) \setminus f^{-1}(V)$.
+
+!!! Success Model solution
+    We prove only the first statement here, since only very small adjustments are required in its proof to prove the last two ones.
+    - Let be $x \in f^{-1}(A \cup B)$. By definition, $f(x)\in A \cup B$, so that we have either $f(x) \in A$ or $f(x) \in B$. If $f(x)\in A$, then $x \in f^{-1}(A)$ by defintion. This implies that $x \in f^{-1}(A) \cup f^{-1}(B)$. The same conclusion holds if $f(x) \in B$. Thus, we have demonstrated that $f^{-1}(A \cup B)\subseteq f^{-1}(A) \cup f^{-1}(B)$.
+    - For the converse inclusion, let be $x \in f^{-1}(A) \cup f^{-1}(B)$. We have either $x \in f^{-1}(A)$ or $x \in f^{-1}(B)$. If $x \in f^{-1}(A)$, then $f(x) \in A$, and since $A \subseteq A \cup B$, we have $f(x) \in A \cup B$. This implies $x \in f^{-1}(A \cup B)$. The same conclusion holds if $x \in f^{-1}(B)$. Thus, $f^{-1}(A) \cup f^{-1}(B) \subseteq f^{-1}(A \cup B)$.
+    - This proves the equality $f^{-1}(A \cup B)=f^{-1}(A)\cap f^{-1}(B)$.
+
+*Exercise 3.4.5* Let $f: X \to Y$ be a function from one set $X$ to another set $Y$. Show that $f(f^{-1}(S))=S$ for every $S \subseteq Y$ if and only if $f$ is surjective. Show that $f^{-1}(f(S))=S$ for every $S \subseteq X$ if and only if $f$ is injective.
+
+!!! Note
+    1. $f(f^{-1}(S))=S$ for every $S \subseteq Y$ iff $f$ is surjective
+        - First we show that $f(f^{-1}(S))=S$ for every $S \subseteq Y$ implies $f$ is surjective. Since $Y \subseteq Y$, we have $f(f^{-1}(Y))=Y$. Let be $y \in Y$, so that we have $y \in f(f^{-1}(Y))$. By definition, there exists $x \in f^{-1}(Y)$ such that $y=f(x)$. By definition, $f^{-1}(Y) \subseteq X$, and since the arbitrary of $y$, there exists $x \in X$ such that $y=f(x)$ for every $y \in Y$. So $f$ is surjective.
+        - Next we show that the oppsite direction of the statement also holds. Let $y \in f(f^{-1}(S))$, so that there exists $x \in f^{-1}(S)$ such that $y=f(x)$ by definition. By definition, $x \in f^{-1}(S)$ implies $f(x) \in S$ which means $y \in S$. Thus, $f(f^{-1}(S))\subseteq S$. On the other hand, let $y \in S$. Since $S \subseteq Y$, we have $y \in Y$. As $f$ is surjective, there exists $x \in X$ that $f(x)=y$. By definition we have $x \in f^{-1}(S)$ since $f(x) \in S$ and hence $f(x) \in f(f^{-1}(S))$, i.e., $y \in f(f^{-1}(S))$. Thus we have proved $f(f^{-1}(S))=S$. Since $S$ is arbitrary, we have proved that $f(f^{-1}(S))=S$ for every $S \subseteq Y$.
+        - Therefore, $f(f^{-1}(S))=S$ for every $S \subseteq Y$ iff $f$ is surjective.
+    2. $f^{-1}(f(S))=S$ for every $S \subseteq X$ if and only if $f$ is injective
+        - First we show that $f^{-1}(f(S))=S$ for every $S \subseteq X$ implies $f$ is injective. Since $X \subseteq X$, we have $f^{-1}(f(X))=X$. Let be $x_1 \in X, x_2 \in X, x_1 \neq x_2$ and $X_1:=X \setminus \{x_1\}$. It is clear that $X_1 \subsetneq X$. Suppose $f(x_1)=f(x_2)$. Let $x \in X_1$ and then we have $f(x) \in f(X_1)$. Since $X_1 \subseteq X$, we also have $x \in X$ and hence $f(x) \in f(X)$. So we have $f(X_1) \subseteq f(X)$. Let $x \in X$. By definition, we have $f(x) \in f(X)$. Since $X = X_1 \cup \{x_1\}$, we can divide into two cases. If $x \in X_1$, then we have $f(x) \in f(X_1)$. If $x\in \{x_1\}$, then $x = x_1$. Since $f(x_1) = f(x_2)$ and $f(x_2) \in f(X_1)$, we have $f(x_1)\in f(X_1)$ and hence $f(x) \in f(X_1)$. In both cases we have $f(x) \in f(X_1)$, so $f(X) \subseteq f(X_1)$. Thus, we have $f(X) = f(X_1)$ and hence $f^{-1}(f(X))=f^{-1}(f(X_1))$. Thus, we have $X = X_1$ which is a contradiction. So $x_1 \neq x_2$ implies $f(x_1) \neq f(x_2)$. Thus, $f$ is injective. 
+        - Next we show the oppsite direction of the statement also holds. Let be $x \in f^{-1}(f(S))$. By definition, we have $f(x) \in f(S)$, which further means that there exists $x_0 \in S$ such that $f(x) = f(x_0)$. Since $f$ is injective, we have $x=x_0$, so $x \in S$. Thus, we have demonstrated that $f^{-1}(f(S)) \subseteq S$. Let be $x \in S$. By definition, we have $f(x) \in f(S)$, which further means $x \in f^{-1}(f(S))$. Thus, we have proved that $S \subseteq f^{-1}(f(S))$. Since $S$ is an arbitrary subset of $X$, we have proved that $f$ is injective implies $f^{-1}(f(S))=S$ for every $S \subseteq X$.
+        - Therefore, $f^{-1}(f(S))=S$ for every $S \subseteq X$ if and only if $f$ is injective.
+
+!!! Success Improvements on the proving $f^{-1}(f(S))=S$ for every $S \subseteq X$ implies $f$ is injective
+    Let be $x_0 \in X$. By the axiom of singleton, there exists a set $\{x_0\}$ such that $x \in \{x_0\}$ iff $x=x_0$. So $\{x_0\} \subseteq X$ and hence $f^{-1}(f(\{x_0\}))=\{x_0\}$. Since $x_0 \in \{x_0\}$, we have $f(x_0) \in f(\{x_0\})$. Let be $x_1 \in X$. If $f(x_1)=f(x_0)$, then $f(x_1) \in f(\{x_0\})$, thus $x_1 \in f^{-1}(f(\{x_0\}))$ by definition, and hence $x_1 \in \{x_0\}$, so we have $x_1 = x_0$. Since $x_0$ and $x_1$ are arbitrary, $f$ is injective.
+    
 *Exercise 3.4.6*
 (i) Prove Lemma 3.4.10. (*Hint:* start with the set $\{0, 1\}^X $ and apply the replacement axiom, replacing each function $f$ with the object $f^{-1}(\{1\})$.) See also Exercise 3.5.11.
 
-!!! success
+!!! Note
     By the power set axiom, $f \in \{1, 2\}^X$ iff $f: X \to \{1, 2\}$. Since $\{1\} \subseteq \{1, 2\}$, $f^{-1}(\{1\})$ is inverse image of $\{1\}$ which is unique by the definition of inverse images. So for each $f \in \{1,2\}^X$ there is at most one $Y$ such that $Y=f^{-1}(\{1\})$. By the replacement axiom, we can construct a set $Z:=\{f^{-1}(\{1\}):f \in \{1, 2\}^X \}$ such that for any object $Y$, $Y\in Z \Longleftrightarrow Y=f^{-1}(\{1\})$ for some $f \in \{1, 2\}^X$.
 
     First we show that $Y \in Z \implies Y \subseteq X$. Since $Y \in Z \Longleftrightarrow Y=f^{-1}(\{1\})$ and $f^{-1}(\{1\}) \subseteq X$ by definition, we have $Y \subseteq X$. Next we show that $Y \subseteq X \implies Y \in Z$. Let $f_A: X \to \{1,2\}$ defined by $f_A(x)=1$ for $x \in Y$ and $f_A(x)=0$ otherwise. Obviously, we have $f_A \in \{0,1\}^X$ and $Y = f_A^{-1}(\{1\})$. So we have $Y \in Z$. Thus $Y \in Z \Longleftrightarrow Y \subseteq X$ for all objects $Y$.
@@ -243,5 +279,7 @@ $$
     $$P = \{A: A \text{ is a subset of } X\}$$ is a well-defined set, which we wanted to prove.
     
 (ii) Conversely, show that Axiom 3.11 can be deduced the preceding axioms of set theory if one accepts Lemma 3.4.10 as an axiom. (This may help explain why we refer to Axiom 3.11 as the "power set axiom")
+
+!!! Note
 
 [^4]: In principle this notation could collide with the existing notation f(x) for the evaluation of $f$ at $x$, if $S$ turns out to both be a subset of $X$ and an element of $X$. However, we will ignore this potential collision as it rarely occurs in practice.
