@@ -132,7 +132,9 @@ $$
 $$
 which is a set thanks to the axiom of replacement and the axiom of union. Thus for instance, if $I=\{1, 2,3\}$, $A_1:=\{2,3\}$, $A_2=\{3,4\}$, and $A_3:\{4,5\}$, then $\bigcup_{\alpha\in\{1,2,3\}}A_\alpha=\{2,3,4,5\}$. More generally, we see that for any object $y$,
 $$
+\begin{equation}
 y \in \bigcup_{\alpha \in I}A_\alpha \Leftrightarrow (y \in A_\alpha \text{ for some } \alpha \in I). \tag{3.2}
+\end{equation}
 $$
 In situations like this, we often refer to $I$ as an *index set*, and the elements $\alpha$ of this index set as *labels*; the sets $A_\alpha$ then called a *family of sets* and are *indexed* by the labels $\alpha \in I$. Note that if $I$ was empty, then $\bigcup_{\alpha \in I}A_\alpha$ would automatically also be empty (why?)
 
@@ -280,6 +282,39 @@ $$
     
 (ii) Conversely, show that Axiom 3.11 can be deduced the preceding axioms of set theory if one accepts Lemma 3.4.10 as an axiom. (This may help explain why we refer to Axiom 3.11 as the "power set axiom")
 
-!!! Note
+*Exercise 3.4.7* Let $X$, $Y$ be sets. Define a *partial function* from $X$ to $Y$ to be any function $f: X' \to Y'$ whose domain $X'$ is subset of $X$, and whose codomain $Y'$ is a subset of $Y$. Show that the collection of all partial functions from $X$ to $Y$ is itself a set. (*Hint*: use Exercise 3.4.6, the power set axiom, the replacement axiom, and the union axiom.)
+
+!!! Note 
+    By Lemma 3.4.10, there exists two set $A:=\{X':X'\subseteq X\}$ and $B:=\{Y':Y' \subseteq Y\}$. Let be $Y' \in B$. Let $P(X',C)$ be the statement that "for every $X' \in X$ there is a set $C$, which contains all functions from $X'$ to $Y'$". By the power set axiom, there is exactly one $C$ (i.e., $Y'^{X'}$) for which $P(X',C)$ is true. And by the replacement axiom and the specification axiom, there exists a set $D:=\{Y'^{X'}| Y' \in B, X' \in A\}$. By the union axiom, there exists a set $\bigcup D$ such that for every object $f$, $f\in \bigcup D$ iff $f \in S$ for some $S \in D$, which is precisely the collection of all partial functions from $X$ to $Y$.
+
+!!! Success Model solution
+    - Let be $X' \subseteq X$ and $Y' \subseteq Y$. If both $X'$ and $Y'$ are fixed, then as per the power set axiom, there exists a set $Y'^{X'}$ which consists all the functions from $X'$ to $Y'$ and hence is unique.
+    - By Lemma 3.4.10, there exists a set $2^X$ which consists of all the subsets of $X$, and a set $2^Y$ which consists of all the subsets $Y$.
+    - Now we fix an element $X'$ of $2^X$. Let be $Y'$ an element of $2^Y$, $A$ a set, and $P$ the property "$P(Y', A): A=Y'^{X'}$". For each $Y' \in 2^Y$, there exists exactly one $A$, namely $A=Y'^{X'}$, for which $P(Y',A)$ is true. By the replacement axiom, there exists a set $B:=\{Y'^{X'}:Y' \in 2^Y\}$.
+    - Each element of this set is itself a set. Thus by the union axiom, there exists a set $\bigcup \{Y'^{X'}:Y' \in 2^Y\}$ whose element are those objects which are elements of the elements of $\{Y'^{X'}:Y' \in 2^Y\}$, i.e.:
+    $$
+    \bigcup \{Y'^{X'}:Y' \in 2^Y\} = \{f|f:X' \to Y' \text{ for some } Y' \in Y\}
+    $$  
+    This set is obtained for one given fixed subset $X' \subseteq X$, so let's denote this set:
+    $$
+    S_{X'}=\{f|f:X' \to Y' \text{ for some } Y' \in Y\}
+    $$
+    - Now we apply once again the union axiom, especially in its second formulation. If we denote $I=2^X$, then for each element $X' \in I$ we do have one set $S_{X'}$, which is denoted above. Thus there exists a set $\bigcup_{X' \in 2^X}S_{X'}:=\bigcup\{S_{X'}|X'\in 2^X\}$. And, for every function $f$, we have $f \in \bigcup \{S_{X'}|X'\in 2^X\}$ iff there exists $X' \in 2^X$ such that $f \in S_{X'}$, i.e., iff there exists $X' \subseteq X$ and $Y' \subseteq Y$ such that $f:X' \to Y'$, which is equivalent to $f$ is a partial function from $X$ to $Y$ by definition.
+    - Consequently, we have proved that there exists a set which consists of the collection of all partial functions from $X \to Y$.
+
+*Exercise 3.4.8* Show that Axiom 3.5 can be deduced from Axiom 3.1, Axiom 3.4, and Axiom 3.12.
+
+!!! Success
+    - Let $A, B$ be two distinct sets. By Axiom 3.1, $A$ and $B$ are object and hence, by Axiom 3.4, there exists a set $\{A, B\}$ whose only elements are $A$ and $B$. As $\{A, B\}$ is a set, all of whose elements are themselves set, there exists a set $\bigcup \{A, B\}$ whose elements are those objects which are element of the elements of $\{A, B\}$, i.e.:
+    $$
+    \bigcup \{A, B\} = \{x: x \in S \text{ for some } S \in \{A, B\}\} = \{x: x\in A \text{ or } x \in B\}.
+    $$
+    - Consequently, we have proved that there exists a set whose elements are either the elements of $A$ or the elements of $B$. This is precisely Axiom 3.5.
+
+*Exercise 3.4.9* Show that if $\beta$ and $\beta'$ are two elements of a set $I$, and to each $\alpha \in I$ we assign a set $A_\alpha$, then
+$$
+\{x\in A_\beta: x \in A_\alpha \text{ for all } \alpha \in I\}=\{x\in A_{\beta'}: x \in A_\alpha \text{ for all } \alpha \in I\}
+$$
+and so the definition of $\bigcap_{\alpha \in I}A_\alpha$ defined in $(3.3)$ does not depend on $\beta$. Also explain why $(3.4)$ is true.
 
 [^4]: In principle this notation could collide with the existing notation f(x) for the evaluation of $f$ at $x$, if $S$ turns out to both be a subset of $X$ and an element of $X$. However, we will ignore this potential collision as it rarely occurs in practice.
