@@ -332,4 +332,24 @@ and so the definition of $\bigcap_{\alpha \in I}A_\alpha$ defined in $(3.3)$ doe
         - Let be $y \in \bigcap_{\alpha \in I \cup J} A_\alpha$. By definition, we have $y \in A_\alpha$ for all $\alpha \in I \cup J$. This means $y \in A_\alpha$ for all $\alpha \in I$ and all $\alpha \in J$. So we have $y \in \bigcap_{\alpha \in I}A_\alpha$ and $y \in \bigcap_{\alpha \in J}A_\alpha$ and hence $y \in (\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha)$. Thus, we show that $\bigcap_{\alpha \in I \cup J} A_\alpha \subseteq (\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha)$.
         - consequently, we have proved that $(\bigcap_{\alpha \in I} A_\alpha) \cap (\bigcap_{\alpha \in J} A_\alpha) = \bigcap_{\alpha \in I \cup J} A_\alpha$.
 
+*Exercise 3.4.11* Let $X$ be a set, let $I$ be a non-empty set, and for all $\alpha \in I$ let $A_\alpha$ be a subset of $X$. Show that
+$$
+X \setminus \bigcup_{\alpha \in I}A_\alpha = \bigcap_{\alpha \in I} (X \setminus A_\alpha)
+$$
+and
+$$
+X \setminus \bigcap_{\alpha \in I} A_\alpha = \bigcup_{\alpha \in I} (X\setminus A_\alpha)
+$$
+This should be compared with De Morgan's laws in Proposition 3.1.27 (although one cannot derive the above identities from De Morgan's laws, as $I$ could be infinite).
+
+!!! Note
+    1. $X \setminus \bigcup_{\alpha \in I}A_\alpha = \bigcap_{\alpha \in I} (X \setminus A_\alpha)$
+       - Let be $x \in X \setminus \bigcup_{\alpha \in I} A_\alpha$. By defintion, we have $x \in X$ and $x \notin \bigcup_{\alpha \in I} A_\alpha$. By definition, $x \notin \bigcup_{\alpha \in I} A_\alpha$ iff $x \notin A_\alpha$ for all $\alpha \in I$. So we have $x\in X$ and $x \notin A_\alpha$ for all $\alpha \in I$. By assigning $X \setminus A_\alpha$ to every $\alpha \in I$, we can see that $x \in \bigcap_{\alpha \in I} (X \setminus A_\alpha)$. Thus, we can see that $X \setminus \bigcup_{\alpha \in I}A_\alpha \subseteq \bigcap_{\alpha \in I} (X \setminus A_\alpha)$.
+       - Let be $x \in \bigcap_{\alpha \in I} (X \setminus A_\alpha)$. By definition, we have $x \in X \setminus A_\alpha$ for all $\alpha \in I$, i.e., $x \in X$ and $x \notin A_\alpha$ for all $\alpha \in I$. However, $x \notin A_\alpha$ for all $\alpha \in I$ implies $x \notin \bigcup_{\alpha \in I}A_\alpha$; otherwise, if $x \in \bigcup_{\alpha \in I}A_\alpha$, then $x \in A_\alpha$ for some $\alpha \in I$ by definition, which is a contradiction. So we have $x \in X$ and $x \notin \bigcup_{\alpha \in I}A_\alpha$ and hence $x \in X\setminus \bigcup_{\alpha \in I}A_\alpha$. Thus, $\bigcap_{\alpha \in I} (X \setminus A_\alpha) \subseteq X \setminus \bigcup_{\alpha \in I}A_\alpha$.
+       - Consequently, we have proved that $X \setminus \bigcup_{\alpha \in I}A_\alpha = \bigcap_{\alpha \in I} (X \setminus A_\alpha)$.
+    2. $X \setminus \bigcap_{\alpha \in I} A_\alpha = \bigcup_{\alpha \in I} (X\setminus A_\alpha)$.
+        - Let be $x \in X \setminus \bigcap_{\alpha \in I} A_\alpha$. By definition we have $x \in X$ and $x \notin \bigcap_{\alpha \in I} A_\alpha$. While $x \notin \bigcap_{\alpha \in I} A_\alpha$ implies $x \notin A_\alpha$ for some $\alpha \in I$ by definition, we have $x \in X$ and $x \notin A_\alpha$ for some $\alpha \in I$. By assigning $X \setminus A_\alpha$ to every $\alpha \in I$, we have $x \in \bigcup_{\alpha \in I}(X\setminus A_\alpha)$. So $X \setminus \bigcap_{\alpha \in I} A_\alpha \subseteq \bigcup_{\alpha \in I} (X\setminus A_\alpha)$.
+        - Let be $x\in \bigcup_{\alpha \in I} (X\setminus A_\alpha)$. By definition, we have $x \in X\setminus A_\alpha$ for some $\alpha \in I$. This means that there always exists $\alpha \in I$ such that $x \in X \text{ but } x \notin A_\alpha$. Suppose $x \in \bigcap_{\alpha \in I} A_\alpha$, then by definition we have $x \in A_\alpha$ for all $\alpha \in I$, which is contradiction. Thus, $x \in X$ and $x \notin \bigcap_{\alpha \in I} A_\alpha$ always hold, and hence $x \in X \setminus \bigcap_{\alpha \in I} A_\alpha$.
+        - Consequently, we have $X \setminus \bigcap_{\alpha \in I} A_\alpha = \bigcup_{\alpha \in I} (X\setminus A_\alpha)$.
+
 [^4]: In principle this notation could collide with the existing notation f(x) for the evaluation of $f$ at $x$, if $S$ turns out to both be a subset of $X$ and an element of $X$. However, we will ignore this potential collision as it rarely occurs in practice.
