@@ -84,6 +84,24 @@ We can now generalize the single choice lemma (Lemma 3.1.5) to allow for multipl
     
 ***Remark 3.5.12*** It is intuitively plausible that this lemma should be extended to allow or an infinite number of choices, but this cannot be done automatically; it requires an additional axiom, the *axiom of choice*. See Section 8.4
 
+*Exercise 3.5.1* (i) Suppose we *define* the ordered pair $(x,y)$ for any objects $x$ and $y$ by the formula $(x,y):=\{\{x\},\{x,y\}\}$ (thus using several applications of Axiom 3.4). Thus for instance $(1,2)$ is the set $\{\{1\},\{1,2\}\}$, $(2,1)$ is the set $\{\{2\}, \{2,1\}\}$ and $(1,1)$ is the set $\{1\}$. Show that such a definition (known as the *Kuratowski definition* of an ordered pair) indeed obeys the property (3.5).
 
+(ii) Suppose we instead define an ordered pair using the alternate definition $(x,y):=\{x, \{x, y\}\}$. Show that this definition (known as the *short definition* of an ordered pair) also verifies (3.5) and is thus also an acceptable definition of ordered pair. (Warning: this is tricky; one needs the axiom of regularity, and in particular Exercise 3.2.2.)
+
+(iii) Show that regardless of the definition of ordered pair, the Cartesian product $X \times Y$ of any two sets $X$, $Y$ is again a set. (*Hint*: first use the axiom of replacement to show that for any $x \in X$, that $\{(x,y): y\in Y\}$ is a set, and then apply the axiom of union.)
+
+!!! note
+    1. Show that the Kuratowski definition of an ordered pair obeys the property (3.5):
+        - We first show that $(x,y) = (x',y') \implies x=x' \text{ and } y=y' $. We prove this statement by contradiction. Suppose first $x \neq x'$. By Axiom 3.4, $\{x\} \neq \{x'\}$. By the Kuratowski definition, we have $\{\{x\}, \{x, y\}\}=\{\{x'\}, \{x',y'\}\}$. By Axiom 3.4 we have $\{x\} \in \{\{x\}, \{x, y\}\}$, and by Axiom 3.2 we also have $\{x\} \in \{\{x'\}, \{x',y'\}\}$. Since $\{x\} \neq \{x'\}$, we must have $\{x\}=\{x',y'\}$ by Axiom 3.4. However, by Axiom 3.4 again, we have $x' \in \{x', y'\}$ but $x' \notin \{x\}$. So $\{x\}\neq \{x',y'\}$ by Axiom 3.2, leading to a contradiction. Thus, we must have $x=x'$. On the other hand, if $y \neq y'$, then $\{x,y\}=\{x'\}$ or $\{x,y\}=\{x',y'\}$ by Axiom 3.4 and Axiom 3.2. If $\{x,y\}=\{x'\}$, then $y=x'$ by Axiom 3.4 and Axiom 3.2. In this case, $\{\{x\}, \{x, y\}\}=\{\{x\}\}$ and hence $\{\{x\}\}=\{\{x'\},\{x',y'\}\}$, which requires $\{x\} = \{x',y'\}$. However, since $x=x'=y$ and $y\neq y'$ we have $y' \notin \{x\}$ by Axiom 3.4, which indicates that $\{x\}\neq \{x',y'\}$, a contradiction. So $y=y'$ and hence we have ($x=x'$ and $y=y'$) as desired.
+        - Next we show that $(x=x' \text{ and } y=y') \implies (x,y)=(x',y')$. By definition, $(x,y)=\{\{x\},\{x,y\}\}$ and $(x',y')=\{\{x'\},\{x',y'\}\}$. Since $x=x'$ and $y=y'$, we obviously have $\{\{x\},\{x,y\}\}=\{\{x'\},\{x',y'\}\}$. Thus we have $(x,y)=(x',y')$.
+        - Therefore we have proved that the Kuratowski definition of an ordered pair obeys the property (3.5).
+    2. Show that the short definition of an ordered pair also verifies (3.5).
+
+
+*Exercise 3.5.2* Suppose we *define*[^7] an ordered $n$-tuple to be surjective function function $x:\{i\in \mathbf{N}: 1 \le i \le n \} \to X$ whose codomain is some arbitrary set $X$ (so different ordered $n$-tuples are allowed to have different ranges); we then write $x_i$ for $x(i)$ and also write $x$ as $(x_i)_{1 \le i \le n}$. Using this definition, verify that we have $(x_i)_{1\le i\le n}=(y_i)_{1 \le i \le n}$ if and only if $x_i=y_i$ for all $1 \le i \le n$. ALso, show that if $(X_i)_{1\le i\le n}$ are an ordered $n$-tuple of sets, then the Cartesian product, as defined in Definition 3.5.6, is indeed a set. (Hint: Use Exercise 3.4.7 and axiom of specification.)
+
+*Exercise 3.5.3* Show that the definitions of equality for ordered pair and ordered *n*-tuple are consistent with the reflexivity, symmetry, and transitivity axioms, in the sense that if these axioms are assumed to hold for the individual components $x$, $y$ of an ordered pair $(x,y)$, then they hold ofr the ordered pair itself.
 
 [^6]: Here (and in the rest of this text) we adopt the very common practice of abbreviating $f((x,y))$ as $f(x,y)$
+
+[^7]: Technically, this construction of ordered $n$-tuplle is not compatible with the constructions of ordered pairs in Exercise 3.5.1, but this does not cause a difficulty in practice; for instance, one can use the definition of an ordered 2-tuple here to replace the construction in Exercise 3.5.1, or one can make a rather pedantic distinction between an ordered 2-tuple and ordered pair in one's mathematical arguments.
