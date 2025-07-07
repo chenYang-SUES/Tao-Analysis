@@ -1,0 +1,24 @@
+## 3.6 Cardinality of sets
+
+In the previous chapter we defined the natural numbers axiomatically, assuming that we were equipped with a $0$ and and increment operation, and assuming five axioms on these numbers. Philosophically, this is quite different from one of our main conceptualizations of natural numbers—that of *cardinality*, or measuring *how many* elements there are in a set. Indeed, the Peano axiom approach treats natural numbers more like *ordinals* than *cardinals*. (The cardinals are One, Two, Three, ..., and are used to count how many things there are in a set. The *ordinals* are First, Second, Third, ..., and are used to order a sequence of objects. There is a subtle difference between the two, especially when comparing infinite cardinals with infinite ordinals, but this is beyond the scope of this text.) We paid a lot of attention to what number came *next* after a given number $n$—which is an operation which is quite natural for ordinals, but less so for cardinals—but did not address the issue of whether these numbers could be used to *count* sets. The purpose of this section is to address this issue by noting that the natural numbers *can* be used to count the cardinality of sets, as long as the set is finite.
+
+The first thing is to work out when two sets have the sets have the same size. For instance, it seems clear that the set $\{1,2,3\}$ and $\{4,5,6\}$ have the same size, but that both have a different size from $\{8,9\}$. As an initial attempt to define a notion of size, we could try to say that two sets have the same size if they have the same number of elements, but we have not yet defined what the "number of elements" in a set is. Besides, this runs into problems when a set is infinite.
+
+The right way to define the concept of "two sets having the same size" is not immediately obvious, but can be worked out with some thought. One intuitive reason why the sets $\{1,2,3\}$ and $\{4,5,6\}$ have the same size is that one can match the elements of the first set with elements in the second set in a one-to-one corresponce: $1 \leftrightarrow 4$, $2 \leftrightarrow 5$, $3 \leftrightarrow 6$. (Indeed, this how we first learn to count a set: we correspond the set we are tring to count with another set, such as a set of fingers on your hand.) We will use this intuitive understanding as our rigorous basis for "having the same size".
+
+> **Definition 3.6.1** (*Equal cardinality*) We say that two sets $$ and $Y$ have *equal cardinality* iff there exists a bijection $f: X\to Y$ from $X \to Y$.
+
+***Example 3.6.2*** The sets $\{0,1,2\}$ and $\{3,4,5\}$ have equal cardinality, since we can find a bijection between the two sets. Note that we do not yet know wether $\{0,1,2\}$ and $\{3,4\}$ have equal cardinality; we know that one of the functions $f$ from $\{0,1,2\}$ to $\{3,4\}$ is not a bijection, but we have not proven yet that there might still be some other bijection from one set to the other. (It turns out that they do not have equal cardinality, but we will prove this a little later.) Note that this definition makes sense regardless whether $X$ is finite or infinite (in fact, we haven't even defined what finite means yet).
+
+***Remark 3.6.3*** The fact that two sets have equal cardinality does not preclude one of the sets from containing the other. For instance, if $X$ is the set of natural numbers and $Y$ is the set of even[^9] natural numbers, then the map $f:X \to Y$ defined by $f(n):=2n$ is a bijection from $X$ to $Y$ (why?), and so $X$ and $Y$ have equal cardinality, despite $Y$ being a subset of $X$ and seeming intuitively as if it should only have $half$ of the elements of $X$.
+
+!!! Note Why $f:X \to Y$ defined by $f(n):=2n$ is a bijection from $X$ to $Y$?
+    - **Injectivity**: Let $a, b \in \mathbf{N}$ and $a \neq b$. By the definition of $f$, we have $f(a)=2a$ and $f(b)=2b$. If $f(a)=f(b)$, then $2a=2b$. By the cancellation law for natural numbers (if $2a=2b$, then $a=b$), this contradicts $a \neq b$. Therefore $f(a) \neq f(b)$, so $f$ is injective.
+    - **Surjectivity**: Let $y \in Y$, i.e., $y$ is an even natural number. By the definition of even numbers, there exists a natural number $n$ such that $y = 2n$. Therefore $f(n) = 2n = y$. Since $y$ is arbitrary, $f$ is surjective.
+    - Since $f$ is both injective and surjective, we can conclude that $f$ is bijective.
+
+The notion of having equal cardinality is an equivalence relation:
+
+***Proposition 3.6.4*** *Let $X$, $Y$, $Z$ be sets. Then $X$ has equal cardinality with $X$. If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$. If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, then $X$ has equal cardinality with $Z$*.
+
+***Proof*** See Exercise 3.6.1.

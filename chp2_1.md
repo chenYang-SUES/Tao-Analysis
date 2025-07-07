@@ -1,0 +1,60 @@
+# Starting at the Beginning: The Natural Numbers
+
+In  this text, we will review the material you have learnt in high school and in elementary calculus classes, but as rigorously as possible. To do so we will have to begin at the very basics - indeed, we will go back to the concept of *numbers* and what their properties are. Of course, you have dealt with numbers for over ten years and you know how to manipulate the rules of algebra to simplify any expression involving numbers, but we will now turn to a more fundamental issue, which is: *why* do the rules of algebra work at all? For instance, why is it true that $a(b+c)$ is equal to $ab + ac$ for any three numbers $a, b ,c$?
+This is not an arbitrary choice of rule; it can be proven from more primitive, and more fundamental, properties of the number system. This will teach you a new skill - how to prove complicated properties from simpler ones. You will find that even though a statement may be "obvious", it may not be easy to prove; the material here will give you plenty of practice in doing so, and in the process will lead you to think about *why* an obvious statement really is obvious. One skill in particular that you will pick up here is the use of *mathematical induction*, which is a basic tool in proving things in many areas of mathematics.
+
+So in the first few chapters we will re-acquaint you with various number systems that are used in real analysis. In increasing order of sophistication, they are the *natural numbers* $\mathbf{N}$; the *integers* $\mathbf{Z}$; the *rationals* $\mathbf{Q}$ and the *real numbers* $\mathbf{R}$. (There are other number systems such as the *complex numbers* $\mathbf{C}$, but we will not study them until Sect. 4.6.) Th natural numbers $\{0,1,2,...\}$ are the most primitive of the number systems. But they are used to build the integers, which in turn are used to build the rationals. Furthermore, the rationals are used to build the real numbers, which are in turn used to build complex numbers. Thus to begin at the very beginning, we must look at the real numbers. We will consider the following question: how does one actually *define* the natural numbers? (This is a very different question from how to *use* the natural numbers, which is something you of course know how to do very well. It's like the difference between knowing how to use, say, a computer, versus knowing how to *build* that computer).
+
+This question is more difficult to answer than it looks. The basic problem is that you have used the natural numbers for so long that they are embedded deeply into your mathematical thinking, and you can make various implicit assumptions about these numbers (e.g., that $a+b$ is always equal to $b+a$) without even being aware that you are doing so; it is difficult ot let go and try to inspect this number system as if it is the first time you have seen it. So in what follows I will have to ask you to perform a rather difficult task: try to set aside, for the moment, everything you know about the natural numbers; forget that you know how to count, to add, to multiply, to manipulate the rules of algebra, etc. We will try to introduce these concepts one at a time and identify explicitly what our assumptions are as we go along—and not allow ourselves to use more "advanced" tricks such as the rules of algebra until we have actually proven them. This may seem like an irritating constraint, especially as we will spend a lot of time proving statements which are "obvious", but it is necessary to do this suspension of known facts to avoid *circularity* (e.g., using an advanced fact to prove a more elementary fact, and then later using the elementary fact to prove the advanced fact). Also, this exercise will be an excellent way to affirm the foundations of your mathematical knowledge. Furthermore, practicing your proofs and abstract thinking here will be invaluable when we move on to more advanced concepts, such as real numbers, functions, sequences and series, differentials and integrals, and so forth. In short, the results here may seem trivial, but the journey is much more important than the destination, for now. (Once the number systems are constructed properly, we can resume using the laws of algebra, etc., without having to rederive them each time.)
+
+We will also forget that we know the decimal system, which of course is an extremely convenient way to manipulate numbers, but it is not something which is fundamental to what numbers are. (For instance, one could use an octal or binary system instead of the decimal system, or even the Roman numeral system, and still get exactly the same set of numbers.) Besides, if one tries to fully explain what the decimal number system is, it isn't as natural as you might think. Why is $123.4444...$ a real numbers, while $...444.321$ is not? And why we have to carry of digits when adding or multiplying? Why is $0.999...$ the same number as $1$? What is the smallest positive real number? Isn't it just $0.00...001$? So to set aside theses problems, we will not try to assume any knowledge of the decimal system, though we will of course still refer to numbers by their familiar names such $1$, $2$, and $3$ instead of using other notation such as I, II, III or $0++,(0++)++,((0++)++)++$ (see below) so as not to be needlessly artificial. For completeness, we review the decimal system in Appendix B.
+
+## 2.1 The Peano Axioms
+
+We now present one standard way to define the natural numbers, in terms of the *Peano axioms*, which were first laid yout by Giuseppe Peano (1858-1932). This is not the only way to define the natural numbers. For instance, another approach is to talk about the cardinality of finite sets; for instance one could take a set of five elements and define $5$ to be the number of elements in that set. We shall discuss this alternate approach in Sect. 3.6. However, we shall stick with the Peano axiomatic approach for now.
+
+How are we to define what the natural numbers are? Informally, we could say
+
+> **Definition 2.1.1** (*Informal*) A *natural number* is any element of the set $$
+\mathbf{N}:=\{0,1,2,3,4,...\},
+$$
+which is the set of all the numbers created by starting with $0$ and then counting forward indefinitely. We call $\mathbf{N}$ the *set of natural numbers*.
+
+***Remark 2.1.2*** In some texts the natural numbers start at $1$ instead of $0$, but this is a matter of notational convention more than anything else. In this text we shall refer to the set $\{1,2,3,...\}$ as the positive integers $\mathbf{Z}^+$ rather than the natural numbers. Natural numbers are sometimes also known as whole numbers.
+
+In a sense, this definition solves the problem of what the natural numbers is are: a natural number is any element of the set[^1] $\mathbf{N}$ However, it is not really that satisfactory, because it begs the questions of what $\mathbf{N}$ is. This definition of "start at $0$ and count indefinitely" seems like an intuitive enough definition of $\mathbf{N}$, but it is not entirely acceptable, because it leaves many questions unanswered. For instance, how do we know we can keep counting indefinitely, without cycling back to $0$? Also, how do you perform operations such as addition, multiplication, ore exponentiation?
+
+We can answer the latter question first: we can define complicated operations in terms of simpler operations. Exponentiation is nothing more than repeated multiplication: $5^3$ is nothing more than the fives multiplied together. Multiplication is nothing more than repeated addition; $5 \times 3$ is noting more than three fives multiplied together. (Subtraction and division will not be covered here, because they are not operations which are well-suited to the natural numbers; they will have to wait for the integers and rationals, respectively.) And addition? It is nothing more than the repeated operation of *counting forward*, or *incrementing*. If you add three to five, what you are doing is incrementing five three times. On the other hand, incrementing seems to be a fundamental operation, node reducible to any simpler operation; indeed, it is the first operation one learns on numbers, even before learning to add.
+
+Thus, to define the natural numbers, we will use two fundamental concepts: the zero number $0$ and the increment operation (also known as the *successor operation*). In deference to modern computer languages, we will use $n++$ to denote[^2] the increment or *successor* of $n$, thus for instance $3++=4$, $(3++)++=5$, etc. This is a slightly different usage from that in computer languages such as C, where $n++$ actually *redefines* the value of $n$ to be its successor; however in mathematics we try not to define a variable more than once in any given setting, as it can often lead to confusion; many of the statements which were true for the old value of the variable can now become false, and vice versa.
+
+So, it seems like we want to say that $\mathbf{N}$ consists of $0$ and everything which can be obtained from 0 by incrementing: $\mathbf{N}$ should consist of the objects
+$$
+0,0++,(0++)++,((0++)++)++, \text{etc.}
+$$
+If we start writing down what this means about the natural numbers, we thus see that we should have the following axioms concerning $0$ and the increment operation $+=$:
+
+> **Axiom 2.1** $0$ is a natural number.
+
+> **Axiom 2.2** If $n$ is a natural number, then $n++$ is also a natural number.
+
+Thus for instance, from Axiom 2.1 and two applications of Axiom 2.2, we see that $(0++)++$ is a natural number. Of course, this notation will begin to get unwieldly, so we adopt a convention to write these numbers in more familiar notation:
+
+> **Definition 2.1.3** We define[^3] $1$ to be the number $0++$, $2$ to be the number $(0++)++$, $3$ to be the number $((0++)++)++$, etc. (In other words, $1:=0++$, $2:=1++$, $3=2++$, etc. In this text I use "x:=y" to denote the statement that $x$ is *defined* to equal $y$.)
+
+Thus for instance, we have
+
+**Proposition2.1.4** *$3$ is a natural number*.
+
+***Proof*** By Axiom 2.1, $0$ is a natural number. By Axiom 2.2, $0++=1$ is a natural number. By Axiom 2.2 again, $1++=2$ is a natural number. By Axiom 2.2 again, $2++=3$ is a natural number.
+
+It may seem that this is enough to describe the natural numbers. However, we have not pinned down completely the behavior of $\mathbf{N}$:
+
+***Example 2.1.5*** Consider a number system which consists of the numbers $0,1,2,3,$ in which the increment operation wraps back from $3$ to $0$. More precisely $0++$ is equal to $1$, $1++$ is equal to $2$, $2++$ is equal to $3$, but $3++$ is equal to $0$ (and also equal to $4$, by definition of $4$). This type of thing actually happens in real life, when one uses a computer to try to store a natural number: if one starts at $0$ and performs the increment operation repeatedly, eventually the computer will overflow its memory and the number will wrap around back to $0$ (though this may take a quite large number of incrementation operations, for instance a two-byte reperesentation of an integer will wrap around only after $65,536$ increments). Note that this type of number system obeys Axiom 2.1 and Axiom 2.2, even thought it clearly does not correspond to what we intuitively believe the natural numbers to be like.
+
+
+[^1]: Strictly speaking, there is another problem with this informal definition: we have not yet define what a "set" is ore what "element of" is. Thus for the rest of this chapter we shall avoid mention of sets and their elements as much as possible, except in informal discussion.
+
+[^2]: The notation $Sn$ or $S(n)$ is also often used in the literature to denote the successor $n++$ of $n$. One may be tempted to use the more familiar notation $n+1$ in place of $n++$ to denote the successor of $n$, but this would introduce a circularity in our foundations, since the notion of addition will be defined in terms of the successor operation.
+
+[^3]: This convention is actually an oversimplification. To see how to properly merge the usual decimal notation for numbers with  the natural numbers given by the Peano axioms, see Appendix B.

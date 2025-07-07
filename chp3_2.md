@@ -25,13 +25,5 @@ The point of this axiom (which is also known as the *axiom of foundation*) is th
 
 One can legitimately ask whether we really need this axiom in our set theory, as it is certainly less intuitive than our other axioms. For the purposes of doing analysis, it turns out in fact that this axiom is never needed; all the sets we consisder in analysis are typically very low on the hierarchy of objects, or at worst sets of sets of sets of primitive objects. However it is necessary to include this axiom in order to perform more advanced set theory, and so we included this axiom in the text (but in tan optional section) for sake of completeness.
 
-## Exercises
-*Exercise 3.2.1* Show that the universal specification axiom, Axiom 3.9, if assumed to be true, would imply Axioms 3.3, 3.4, 3.5, 3.6, and 3.7. (If we assume that all natural numbers are objects, we also obtain Axiom 3.8). Thus, this axiom, if permitted, would satisfy the foundations of set theory tremendously (and can be viewed as one basis for an intuitive model of set theory known as "naive set theory). Unfortunately, as we have seen, Axiom 3.9 is "too good to be true"!
-
-!!! Note
-    1. Axiom 3.3
-        - Let $P(x)$ be the statement $$
-            P(x) \Longleftrightarrow 
-        $$
 
 [^1]: In pure set theory, there will be no primitive objects, but there will be one primitive set $\emptyset$ on the next rung of the hierarchy.
