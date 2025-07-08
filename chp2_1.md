@@ -52,9 +52,87 @@ It may seem that this is enough to describe the natural numbers. However, we hav
 
 ***Example 2.1.5*** Consider a number system which consists of the numbers $0,1,2,3,$ in which the increment operation wraps back from $3$ to $0$. More precisely $0++$ is equal to $1$, $1++$ is equal to $2$, $2++$ is equal to $3$, but $3++$ is equal to $0$ (and also equal to $4$, by definition of $4$). This type of thing actually happens in real life, when one uses a computer to try to store a natural number: if one starts at $0$ and performs the increment operation repeatedly, eventually the computer will overflow its memory and the number will wrap around back to $0$ (though this may take a quite large number of incrementation operations, for instance a two-byte reperesentation of an integer will wrap around only after $65,536$ increments). Note that this type of number system obeys Axiom 2.1 and Axiom 2.2, even thought it clearly does not correspond to what we intuitively believe the natural numbers to be like.
 
+To prevent this sort of "wrap-around issue" we will impose another axiom:
+
+> **Axiom 2.3** $0$ is not the successor of any natural number; i.e., we have $n++ \neq 0$ for every natural number $n$.
+
+**Proposition 2.1.6** $4$ is not equal to $0$.
+
+Don't laugh! Because the way we have defined 4—it is the increment of the increment of the increment of $0$—it is not necessarily true *a priori* that this number is not the same as zero, even if it is "obvious". ("*a priori* is Latin for "beforehand"—it refers to one already knows or assumes to be true before one begins a proof or argument. The opposite is "a posteriori"—what one knows to be true after the proof or argument is concluded.) Note for instance that in Example 2.1.5, $4$ was indeed equal to $0$, and that in a standard two-byte computer representation of a natural number, for instance, $65,536$ is equal to $0$ (using our definition of $65,536$ as equal to $0$ incremented sixty-five thousand, five hundred and thirty-six times).
+
+***Proof*** By definition, $4=3++$. By Axioms 2.1 and 2.2, $3$ is a natural number. Thus by Axiom 2.3, $3++\neq 0$, i.e., $4\neq 0$.
+
+However, even with our new axiom, it is still possible that our number system behaves in other pathological ways:
+
+***Example 2.1.7*** Consider a number system consisting of five numbers $0,1,2,3,4$, in which the increment operation hits a "ceiling" at $4$. More precisely, suppose that $0++=1$, $1++=2$, $2++=3$, $3++=4$, but $4++=4$ (or in other words that $5=4$, and hence $6=4$, $7=4$, etc.). This does not contradict Axioms 2.1, 2.2 and 2.3. Another number system with a similar problem is one in which incrementation wraps around, but not to zero, e.g. that $4++=1$ (so that $5=1$, then $6=2$, etc.)
+
+There are many ways to prohibit the above types of behavior from happening, but one of the simplest is to assume the following axiom:
+
+> **Axiom 2.4** Different natural numbers must have different successors; i.e., if $n$, $m$ are natural numbers and $n\neq m$, then $n++ \neq m++$. Equivalently[^4], if $n++=m++$ then we must have $n=m$.
+
+**Proposition 2.1.8** *$6$ is not equal to 2*.
+
+**Proof** Suppose for sake of contradiction that $6=2$. Then $5++=1++$, so by Axiom 2.4 we have $5=1$, so that $4++=0++$. By Axiom 2.4 again we then have $4=0$, which contradicts our previous proposition.
+
+As one can see from this proposition, it now looks like we can keep all of the natural numbers distinct from each other. There is however still one more problem: while the axioms (particularly Axiom 2.3 and 2.4) allow us to confirm that $0, 1, 2, 3, ...$ are distinct elements of $\mathbf{N}$, there is the problem that there may be other "rogue" elements in our number system which are not of this form:
+
+***Example 2.1.9*** (Informal) Suppose that our number system $\mathbf{N}$ consisted of the following collection of integers and half-integers:
+$$
+N:=\{0,0.5,1,1.5,2,2.5,3,3.5,...\}.
+$$
+(This example is marked "informal" since we are using real numbers, which we're not supposed to use yet.) One can check that Axioms 2.1-2.4 are still satisfied for this set.
+
+What we want is some axiom which says that the only numbers in $\mathbf{N}$ are those which can be obtained from $0$ and the increment operation—in order to exclude elements such as $0.5$. But it is difficult to quantify what we mean by "can be obtained from" without already using the natural numbers, which we are trying to define. Fortunately, there is an ingenious solution to try to capture this fact:
+
+> **Axiom 2.5** (*Principle of mathematical induction*). Let $P(n)$ be any property pertaining to a natural number $n$. Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n++)$ is also true. Then $P(n)$ is true for every natural number $n$.
+
+***Remark 2.1.10*** We are a little vague on what "property" means at this point, but some possible examples of $P(n)$ might be "$n$ is even"; "$n$ is equal to $3$"; "$n$ solves the equation $(n+1)^2=n^2+2n+1$"; and so forth. Of course we haven't defined many of these concepts yet, but when we do, Axiom 2.5 will apply to these properties. (A logical remark: Because this axiom refers not just to *variables*, but also *properties*, it is of a different nature than the other four axioms; indeed, Axiom 2.5 should technically be called an *axiom schema* rather than an *axi*–it is a template for producing an (infinite) number of axioms, rather than being a single axiom in its own right. To discuss this distinction further is far beyond the scope of this text, though, and falls in the realm of mathematical logic ).
+
+The informal intuition behind this axiom is the following. Suppose $P(n)$ is such that $P(0)$ is true, and such that whenever $P(n)$ is true, then $P(n++)$ is true. Then since $P(0)$ is true, $P(0++)=P(1)$ is true. Since $P(1)$ is true, $P(1++)=P(2)$ is true. Repeating this indefinitely, we see that $P(0)$, $P(1)$, $P(2)$, $P(3)$, etc., are all true—however this line of reasoning will never let us conclude that $P(0.5)$, for instance, is true. Thus Axiom 2.5 should not hold for number system which contain "unnecessary" elements such as $0.5$. (Indeed, one can give a "proof" of this fact as follows. Apply Axiom 2.5 to the property $P(n)=n$ "is not a half-integer", i.e., an integer plus 0.5. Then $P(0)$ is true, and if $P(n)$ is true, then $P(n++)$ is true. Thus Axiom 2.5 asserts that $P(n)$ is true for all natural numbers $n$, i.e., no natural number can be a half-integer. In particular, $0.5$ cannot be a natural number. This "proof" is not quite genuine, because we have not defined such notions as "integer", "half-integer", and $0.5$ yet, but it should give you some idea as how the principle of induction is supposed to prohibit any numbers other than the "true" natural numbers from appearing in $\mathbf{N}$.)
+
+The principle of induction gives us a way to prove that a property $P(n)$ is true for every natural number $n$. Thus in the rest of this text we will see many proofs which have a form like this:
+
+**Proposition Template 2.1.11** *A certain property $P(n)$ is true for every natural number $n$.*
+
+***Proof Template*** We use induction. We first verify the base case $n=0$, i.e., we prove $P(0)$. (Insert proof of $P(0)$ here.) Now suppose inductively that $n$ is a natural number, and $P(n)$ has already been proven. We now prove $P(n++)$. (Insert proof of $P(n++)$, assuming that $P(n)$ is true, here.) This closes the induction, and thus $P(n)$ is true for all numbers $n$.
+
+Of course we will not necessarily use the exact template, wording, or order in the above type of proof, but the proofs using induction will generally be something like the above form. There are also some other variants of induction which we shall encounter later, such as backwards induction (Exercise 2.2.6), strong induction (Proposition 2.2.14), and transfinite induction (Lemma 8.5.15).
+
+Axioms 2.1-2.5 are known as the *Peano axioms* for the natural numbers. They are all very plausible, and so we shall make
+
+> **Assumption 2.6** (Informal) There exists a number system $\mathbf{N}$, whose elements we will call *natural numbers*, for which Axioms 2.1-2.5 are true.
+
+We will make this assumption a bit more precise once we have laid down our notation for sets and functions in the next chapter.
+
+ ***Remark 2.1.12*** we will refer to this number system $\mathbf{N}$
+ as *the* natural number system. One could of course consider the possibility that there is more than one natural number system, e.g., we could have the Hindu-Arabic number system $\{0,1,2,3,...\}$ and the Roman number system $\{O,I,II,III,IV,V,VI,...\}$ (augmented by adding a zero symbol $O$), and if we really wanted to be annoying we could view these number systems as different. But these number systems are clearly equivalent (the technical term is *isomorphhic*), because one can create a one-to-one correspondence $0 \leftrightarrow O$, $1 \leftrightarrow I$, $2 \leftrightarrow II$, etc., which maps the zero of the Hindu-Arabic system with the zero of the Roman system, and which is preserved by the increment operation (e.g., if $2$ corresponds to $II$, then $2++$ will correspond to $II++$). For a more precise statement of this type of equivalence, see Exercise 3.5.13. Since all versions of the natural number system are equivalent, there is no point in having distinct natural number systems, and we will just use a single natural number system to do mathematics.
+
+ We will not prove Assumption 2.6 (though we will eventually include it in our axioms for set theory, see Axiom 2.8), and it will be the only assumptution we will ever make about our numbers. A remarkable accomplishment of modern analysis is that just by starting from these five very primitive axioms, and some additional axioms from set theory, we can build all the other number system, create functions, and do all the algebra and calculus that we are used to.
+
+ ***Remark 2.1.13*** (Informal) One interesting feature about the natural numbers is that while each individual natural number is finite, the *set* of natural number is infinite; i.3, $\mathbf{N}$ is infinite but consists of individually finite elements. (The whole is greater than any of its parts.) There are no infinite natural numbers; one can even prove this using Axiom 2.5, provided one is comfortable with the notions of finite and infinite. (Clearly $0$ is finite. Also , if $n$ is finite, then clearly $n++$ is also finite. Hence by Axiom 2.5, all natural numbers are finite.) So the natural numbers can *approach* infinity, but never actually reach it; infinity is not one of the natural numbers. (There are other number systems which admit "infinite" numbers, such as the cardinals, ordinals, and $p$-adics, but they do not obey the principle of induction, and in any event are beyond the scope of this text.)
+
+ ***Remark 2.1.14*** Note that our definition of the natural numbers is *axiomatic* rather than *constructive*. We have not told you what the natural numbers *are* (so we do not address such questions as what the numbers are made of, are they physical objects, what do they measure, etc.)—we have only listed some things you can do with them (in fact, the only operation we have defined on them right now is the increment one) and some of the properties that they have. This is how mathematics works—it treats its objects *abstractly*, caring only about what properties the objects have, not what the objects are or what they mean. If one wants to do mathematics, it does not matter whether a natural number means a certain arrangement of beads on an abacus, or a certain organization of bits in a computer's memory, or some more abstract concept with no physical substance, as you can increment them, see if two of them are equal, and later on do other arithmetic operations such as add and multiply, they qualify as numbers for mathematical purposes (provided they obey the requisite axioms, of course). It is possible to construct the natural numbers from other mathematical objects—from sets, for instance—but there are multiple ways to construct a working model of the natural numbers, and it is pointless, at least from a mathematician's standpoint, as to argue about which model is the "true" one; as long as it obeys all the axioms and does all the right things, that's good enough to do maths.
+
+ ***Remark 2.1.15*** Historially, the realization that numbers could be treated axiomatically is very recent, not much more than a hundred years old. Before then, numbers were generally understood to be inextricably connected to some external concept, such as counting the cardinality of a set, measuring the length of a line segment, or the mass of a physical object. This worked reasonably well, until one was forced to move from one number system to another; for instance, understanding numbers in terms of counting beads, for instance, is great for conceptualizing the numbers $3$ and $5$, but doesn't work so well for $-3$ or $1/3$ or $3+4i$; thus each great advance in the theory of numbers—negative numbers, irrational numbers, complex numbers, even the number zero—led to a lot of unnecessary philosophical anguish. The great discovery of the late nineteenth century was that numbers can be understood abstractly via axioms, without necessarily needing a concrete model; of course a mathematician can use any of these models when it is convenient, to aid his or her intuition and understanding, but they can also be just easily discarded when they begin to get in the way.
+
+ One consequence of the axioms is that we can now define sequences *recursively*. Suppose we want to build a sequence $a_0, a_1, a_2,...$ of numbers by first defining $a_0$ to be some base value, e.g., $a_0:=c$, and then by letting $a_1$ be some function of $a_0$, $a_1:=f_0(a_0)$, $a_2$ to be some function of $a_1$, $a_2=f_1(a_1)$, and so forth. In general, we set $a_{n++}=f_n(a_n)$ for some function $f_n$ from $\mathbf{N}$ to $\mathbf{N}$. By using all the axioms together we will now conclude that this procedure will give a single value to the sequence element $a_n$ for each natural number $n$. More precisely[^5]:
+
+ **Proposition 2.1.16** (Recursive definitions). *Suppose for each natural number $n$, we have some function $f_n: \mathbf{N} \to \mathbf{N}$ from the natural numbers to the natural numbers. Let $c$ be a natural number. Then we can assign a unique natural number $a_n$ to each natural number $n$, such that $a_0=c$ and $a_{n++}=f_n(a_n)$ for each natural number $n$*.
+ 
+ ***Proof*** (Informal) We use induction. We first observe that this procedure gives a single value to $a_0$, namely $c$. (None of the other definitions $a_{n++}=f_n(a_n)$ will redefine the value of $a_0$, because of Axiom 2.3.) Now suppose inductively that the procedure gives a single value to $a_n$. Then it gives a single value to $a_{n++}$, namely $a_{n++}:=f_n(a_n)$. (None of the other definitions $a_{m++}:=f_m(a_m)$ will redefine the value of $a_{n++}$, because of Axiom 2.4.) This completes the induction, and so $a_n$ is defined for each natural number $n$, with a single value assigned to each $a_n$.
+
+ Note how all of the axioms had to be used here. In a system which had some sort of wrap-around, recursive definitions would not work because some elements of the sequence would constantly be redefined. For instance, in Example 2.1.5, in which $3++=0$, then there would be (at least) two conflicting definition for $a_0$, either $c$ or $f_3(a_3)$. In a system which had superfluous elements such as $0.5$, the element $a_{0.5}$ would never be defined.
+
+ Recursive definitions are very powerful; for instance, we can use them to define addition and multiplication, to which now turn.
 
 [^1]: Strictly speaking, there is another problem with this informal definition: we have not yet define what a "set" is ore what "element of" is. Thus for the rest of this chapter we shall avoid mention of sets and their elements as much as possible, except in informal discussion.
 
 [^2]: The notation $Sn$ or $S(n)$ is also often used in the literature to denote the successor $n++$ of $n$. One may be tempted to use the more familiar notation $n+1$ in place of $n++$ to denote the successor of $n$, but this would introduce a circularity in our foundations, since the notion of addition will be defined in terms of the successor operation.
 
 [^3]: This convention is actually an oversimplification. To see how to properly merge the usual decimal notation for numbers with  the natural numbers given by the Peano axioms, see Appendix B.
+
+[^3]: This is an example of reformulating an implication using its contrapositive; see Sect. A.2 for more details. In the converse direction, if $n=m$, then $n++=m++$; this is the *axiom of substitution* (see Sect. A.7) applied to the operation $++$.
+
+[^4]: This is an example of reformulating an implication using its *contrapositive*; see Sect. A.2 for more details. In the converse direction, if $n=m$, then $n++=m++$; this is the *axiom of substitution* (see Sect. A.7) applied to the operation $++$.
+
+[^5]: Strictly speaking, this proposition requires one to define the notion of a function, which we shall do in the next chapter. However, this will not be circular, as the concept of a function does not require Peano axioms. Proposition 2.1.16 can be formalized more rigorously in the language of set theory; see Exercise 3.5.12.
